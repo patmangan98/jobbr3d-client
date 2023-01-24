@@ -31,8 +31,7 @@ As a user...
 
 
 ## Wireframe of USER Experience. 
-
-[label](project-2-wireframe.jpg%EF%80%BAZone.Identifier)
+![Alt text](project-2-wireframe.jpg)
 
 ## ERD
 ![Alt text](project-2-erd.jpg)
