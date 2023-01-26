@@ -34,10 +34,14 @@ export const signIn = (data) => {
 
 //create
 
-//index
-// export const indexCustomers = () => {
-//     return fetch()
-// }
+// index
+export const indexCustomers = () => {
+    return fetch('http://localhost:3000/sign-in', {
+        headers : {
+            Authorization: `Bearer ${store.userToken}`
+        },
+    })
+}
 //show
 
 

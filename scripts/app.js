@@ -6,7 +6,8 @@ import {
 import {
     onSignUpSuccess,
     onFailure,
-    // onSignInSuccess
+    onSignInSuccess,
+    indexCustomersAfterSignIn
 } from './ui.js'
 
 const signUpContainer = document.querySelector('#signUp')
@@ -23,19 +24,22 @@ signUpContainer.addEventListener('submit', (event) => {
     signUp(userData)
     .then(onSignUpSuccess)
     .catch(onFailure)
-    event.preventDefault()
+    
 })
 
-// signInContainer.addEventListener('submit', (event) => {
-//     event.preventDefault()
-//     const userData = {
-//         credentials: {
-//             email: event.target['email'].value,
-//             password: event.target['password'].value, 
-//         },
+signInContainer.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const userData = {
+        credentials: {
+            email: event.target['email'].value,
+            password: event.target['password'].value, 
+        },
        
-//     }
-//     signIn(userData)
-//        .then(console.log("it work"))
-//        .catch(console.error())
-// })
+    }
+    signIn(userData)
+        .then((res) => res.json())
+        .then(onSignInSuccess) 
+        .then(indexCustomersAfterSignIn)
+        .then(console.error())
+        .catch(onFailure)
+})

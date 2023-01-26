@@ -1,3 +1,5 @@
+// import { store } from store.js
+
 const messageContainer = document.querySelector('#message-container')
 const authContainer = document.querySelector('#auth-container')
 const indexCustomers = document.querySelector('#index-customer-container')
@@ -22,25 +24,25 @@ export const onSignUpSuccess = () => {
     messageContainer.innerHTML = '<p>success, now sign in<p>'
     signUpContainer.style.display = 'none'
     console.log('worked')
-   
-
 }
 
 export const onSignInSuccess = () => {
-    // authContainer.classList.add('hide')
     messageContainer.innerHTML = '<p>sign in successful</p>'
     signInContainer.style.display ='none'
     signUpContainer.style.display= 'none'
-    console.log('it worked')
 }
-//on sign in success
 
-// export const onSignInSuccess = (userToken) => {
-//     authContainer.classList.add('hide')
-    
-// }
 
 //customer actions
+
+export const indexCustomersAfterSignIn = (customers) => {
+    customers.forEach((customer) => {
+        const div = document.createElement('div')
+        div.classList.add('container')
+        div.innerHTML = `<h4>${customer.firstName}${customer.lastName}</h4>`
+        indexCustomers.appendChild(div)
+    })
+}
 
 //on create customer success
 
