@@ -1,15 +1,16 @@
 import {
     signUp,
-    // signIn,
+    signIn,
 } from './api.js'
 
 import {
     onSignUpSuccess,
     onFailure,
+    // onSignInSuccess
 } from './ui.js'
 
 const signUpContainer = document.querySelector('#signUp')
-// const signInContainer = document.querySelector('#signIn')
+const signInContainer = document.querySelector('#signIn')
 
 signUpContainer.addEventListener('submit', (event) => {
     event.preventDefault()
@@ -22,6 +23,7 @@ signUpContainer.addEventListener('submit', (event) => {
     signUp(userData)
     .then(onSignUpSuccess)
     .catch(onFailure)
+    event.preventDefault()
 })
 
 // signInContainer.addEventListener('submit', (event) => {
@@ -31,6 +33,9 @@ signUpContainer.addEventListener('submit', (event) => {
 //             email: event.target['email'].value,
 //             password: event.target['password'].value, 
 //         },
-//         sign(userData)
+       
 //     }
+//     signIn(userData)
+//        .then(console.log("it work"))
+//        .catch(console.error())
 // })

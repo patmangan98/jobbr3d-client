@@ -13,38 +13,42 @@
 <body>
 <header>
 <!-- nav bar -->
- <div id="message-container"></div>  
+ 
 </header>    
-<main>
+<!-- <main> -->
 <!-- Sign/in Sign Up here  -->
-<div class ="container" id="auth-container">
-    <div class="container" >
+<!-- <div class ="container" id="auth-container"> -->
+    <!-- <div class="container" > -->
         <div class="col" id="signUp">
             <h3>New user? Sign Up</h3>
             <form>
                 <label for="set-user-email">Add your email!</label>
-                <input type="email" class="form-control" id="set-user-email" placeholder="name@dabomb.com">
-                <input type="password" class="form-control" id="set-user-password" placeholder="yourPassword123">
+
+                <input type="email" class="form-control" id="set-user-email" placeholder="name@dabomb.com" name="email" autocomplete="off">
+
+                <input type="password" class="form-control" id="set-user-password" placeholder="yourPassword123" name="password" autocomplete="off">
+
                 <input type="submit" class="btn btn-primary">
             </form>
         </div>
         <div class="col" id="signIn">
-        <h3>Existing User? Sign In!</h3>
+            <h3>Existing User? Sign In!</h3>
             <form>
                 <label for="set-user-email">Once you have an account, sign in!</label>
-                <input type="email" class="form-control" id="input-user-email" placeholder="name@dabomb.com">
-                <input type="password" class="form-control" id="input-user-password" placeholder="yourPassword123">
+                <input type="email" class="form-control" id="input-user-email" placeholder="name@dabomb.com" name="email" autocomplete="off">
+                <input type="password" class="form-control" id="input-user-password" placeholder="yourPassword123" name="password" autocomplete="off">
                 <input type="submit" class="btn btn-primary">
             </form>
         </div>
-    </div>
-
-</div>
+    <!-- </div> -->
+<!-- 
+</div> -->
+<div id="message-container"></div>  
 <!-- content goes here -->
 <div class="container" id="index-customer-container"></div>
-<div class="hide" id="index-finished-prints"></div>
-<div class="hide" id ='index-incomplete-prints'></div>
-</main>
+<div class="container" id="index-finished-prints"></div>
+<div class="container" id ='index-incomplete-prints'></div>
+<!-- </main> -->
 <footer>
     <!-- bottom nav -->
     <!-- bottom credits -->

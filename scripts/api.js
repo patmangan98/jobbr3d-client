@@ -6,7 +6,7 @@ import { store }  from "./store.js"
 
 //Sign Up
 export const signUp = (data) => {
-    return fetch('http://localhost:9001/sign-up', {
+    return fetch('http://localhost:3000/sign-up', {
         method: 'POST',
         headers : {
             'Accept' : 'application/json',
@@ -17,17 +17,17 @@ export const signUp = (data) => {
 }
 
 
-//sign in
-// export const signIn = (data) => {
-//     return fetch('http://localhost:9001/sign-in', {
-//         method: 'POST',
-//         headers : {
-//             'Accept' : 'application/json',
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(data),
-//     })
-// }
+
+export const signIn = (data) => {
+    return fetch('http://localhost:3000/sign-in', {
+        method: 'POST',
+        headers : {
+            'Accept' : 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+    })
+}
 
 
 //customer actions
