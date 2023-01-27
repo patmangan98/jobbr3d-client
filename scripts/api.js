@@ -17,7 +17,7 @@ export const signUp = (data) => {
 }
 
 
-
+//sign In
 export const signIn = (data) => {
     return fetch('http://localhost:3000/sign-in', {
         method: 'POST',
@@ -28,11 +28,6 @@ export const signIn = (data) => {
         body: JSON.stringify(data),
     })
 }
-
-
-//customer actions
-
-
 
 // index
 export const indexCustomers = () => {

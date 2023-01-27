@@ -1,11 +1,10 @@
 import { store } from './store.js'
 
 const messageContainer = document.querySelector('#message-container')
-const authContainer = document.querySelector('#auth-container')
+// const authContainer = document.querySelector('#auth-container')
 const indexCustomers = document.querySelector('#index-customer-container')
 const signUpContainer = document.querySelector('#signUp')
 const signInContainer = document.querySelector('#signIn')
-
 
 //global on failure
 export const onFailure = (error) => {
@@ -27,8 +26,9 @@ export const onSignUpSuccess = () => {
 
 export const onSignInSuccess = (userToken) => {
     messageContainer.innerHTML = '<p>sign in successful</p>'
-    signInContainer.style.display ='none'
-    signUpContainer.style.display= 'none'
+    signInContainer.classList.add('hide')
+    signUpContainer.classList.add('hide')
+    
     store.userToken = userToken
 }
 
@@ -36,14 +36,31 @@ export const onSignInSuccess = (userToken) => {
 //customer actions
 
 export const indexCustomersAfterSignIn = (customers) => {
-    customers.forEach((customer) => {
+    customers.customers.forEach((customer) => {
         const div = document.createElement('div')
         div.classList.add('container')
-        div.innerHTML = `<h4>${customer.firstName}${customer.lastName}</h4>`
+        div.innerHTML = `
+        <h4>${customer.firstName} ${customer.lastName}</h4>
+        <p> ${customer.contact}</p>
+        <p>${customer.prints}</p>
+        <button id="show-customer">Show Customer</button>
+        `
         indexCustomers.appendChild(div)
     })
 }
 
+
+
+export const onShowCustomerSuccess = () => {
+    const div = document.createElement('div')
+    div.classList.add('containter')
+    div.innerHTML = `
+    <p>${customer.firstName} ${customer.lastName}</p>
+    <p>${customer.contact}</p>
+    <p>${customer.prints}</p>
+    <p> 
+    `
+}
 //on create customer success
 
 //on update customer success
@@ -51,17 +68,7 @@ export const indexCustomersAfterSignIn = (customers) => {
 //on delete customer success
 
 //on index customer success
-// export const onIndexCustomerSuccess = (customers) => {
-//     customers.forEach((customer) => {
-//         const div = document.createElement('div')
-//         div.innerHTML = `
-//         <h3>${customer.firstName} ${customer.lastName} </h3>
-//         <h2>${customer.contact}</h2> 
-//         <button data-id="${customer._id}">Show Customer</button>  
-//         `
-//         indexCustomerContainer.appendChild(div)
-//     })
-// }
+
 //on show customer success
 
 //print actions
