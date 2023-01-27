@@ -1,4 +1,4 @@
-// import { store } from store.js
+import { store } from './store.js'
 
 const messageContainer = document.querySelector('#message-container')
 const authContainer = document.querySelector('#auth-container')
@@ -26,10 +26,11 @@ export const onSignUpSuccess = () => {
     console.log('worked')
 }
 
-export const onSignInSuccess = () => {
+export const onSignInSuccess = (userToken) => {
     messageContainer.innerHTML = '<p>sign in successful</p>'
     signInContainer.style.display ='none'
     signUpContainer.style.display= 'none'
+    store.userToken = userToken
 }
 
 

@@ -1,6 +1,9 @@
+// import { store } from './store'
+
 import {
     signUp,
     signIn,
+    indexCustomers
 } from './api.js'
 
 import {
@@ -37,9 +40,12 @@ signInContainer.addEventListener('submit', (event) => {
        
     }
     signIn(userData)
+
         .then((res) => res.json())
-        .then(onSignInSuccess) 
+        .then((res) => onSignInSuccess(res.token)) 
+        .then(indexCustomers)
+        .then((res) => res.json())
         .then(indexCustomersAfterSignIn)
-        .then(console.error())
-        .catch(onFailure)
+        
+        .catch(console.error)
 })

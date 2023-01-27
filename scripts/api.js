@@ -36,20 +36,47 @@ export const signIn = (data) => {
 
 // index
 export const indexCustomers = () => {
-    return fetch('http://localhost:3000/sign-in', {
-        headers : {
-            Authorization: `Bearer ${store.userToken}`
-        },
-    })
+	return fetch(`http://localhost:3000/customers`, {
+		headers: {
+			Authorization: `Bearer ${store.userToken}`,
+		},
+	})
+		
 }
-//show
 
+//show
+export const showCustomer = (id) => {
+	return fetch(`http://localhost:3000/customers/${id}`, {
+		headers: {
+			Authorization: `Bearer ${store.userToken}`,
+		},
+	})
+}
 
 //update 
+export const updateCustomer = (data, id) => {
+	return fetch(`http://localhost:3000/customers/${id}`, {
+		method: 'PATCH',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${store.userToken}`,
+		},
+		body: JSON.stringify(data),
+	})
+}
 
 
 
 //delete
+export const deleteCustomer = (id) => {
+	return fetch(`http://localhost:3000/customers/${id}`, {
+		method: 'DELETE',
+		headers: {
+			Authorization: `Bearer ${store.userToken}`,
+		},
+	})
+}
 
 
 //print actions 
