@@ -16,7 +16,6 @@ export const onFailure = (error) => {
 }
 //hide functions
 
-//user actions
 
 //on signup success
 

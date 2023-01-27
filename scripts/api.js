@@ -32,7 +32,7 @@ export const signIn = (data) => {
 
 //customer actions
 
-//create
+
 
 // index
 export const indexCustomers = () => {
