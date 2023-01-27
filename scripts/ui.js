@@ -87,7 +87,10 @@ export const onUpdateCustomerSuccess = () => {
     showCustomerContainer.classList.add('hide')
 }
 //on delete customer success
-
+export const onDeleteCustomerSuccess = () => {
+    messageContainer.innerHTML = `customer deleted successfully`
+    showCustomerContainer.classList.add('hide')
+}
 //on index customer success
 
 //on show customer success

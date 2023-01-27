@@ -7,6 +7,7 @@ import {
     showCustomer,
     updateCustomer,
     createCustomer,
+    deleteCustomer,
 } from './api.js'
 
 import {
@@ -18,6 +19,7 @@ import {
     onUpdateCustomerSuccess,
     onAddCustomerClick,
     onCreateCustomerSuccess,
+    onDeleteCustomerSuccess,
 } from './ui.js'
 
 const signUpContainer = document.querySelector('#signUp')
@@ -104,4 +106,13 @@ addCustomerform.addEventListener('click', (event) => {
     createCustomer(customerData)
         .then(onCreateCustomerSuccess)
         .catch(onFailure)
+})
+
+showCustomerContainer.addEventListener('click', (event) => {
+    const id = event.target.getAttribute('data-id')
+    if (!id) return
+
+    deleteCustomer(id)
+        .then(onDeleteCustomerSuccess)
+        .catch(console.error)
 })

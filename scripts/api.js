@@ -62,7 +62,7 @@ export const updateCustomer = (data, id) => {
 }
 
 export const createCustomer = (data) => {
-	return fetch(`http://localhost:3001/customers`, {
+	return fetch(`http://localhost:3000/customers`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -74,14 +74,14 @@ export const createCustomer = (data) => {
 }
 
 //delete
-// export const deleteCustomer = (id) => {
-// 	return fetch(`http://localhost:3000/customers/${id}`, {
-// 		method: 'DELETE',
-// 		headers: {
-// 			Authorization: `Bearer ${store.userToken}`,
-// 		},
-// 	})
-// }
+export const deleteCustomer = (id) => {
+	return fetch(`http://localhost:3000/customers/${id}`, {
+		method: 'DELETE',
+		headers: {
+			Authorization: `Bearer ${store.userToken}`,
+		},
+	})
+}
 
 
 //print actions 
