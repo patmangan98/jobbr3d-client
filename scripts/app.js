@@ -3,18 +3,23 @@
 import {
     signUp,
     signIn,
-    indexCustomers
+    indexCustomers,
+    showCustomer,
 } from './api.js'
 
 import {
     onSignUpSuccess,
     onFailure,
     onSignInSuccess,
-    indexCustomersAfterSignIn
+    indexCustomersAfterSignIn,
+    onShowCustomerSuccess,    
 } from './ui.js'
 
 const signUpContainer = document.querySelector('#signUp')
 const signInContainer = document.querySelector('#signIn')
+// const showCustomerButton = document.querySelector(`${customer._id}`)
+const indexCustomerContainer = document.querySelector('#index-customer-container')
+
 
 signUpContainer.addEventListener('submit', (event) => {
     event.preventDefault()
@@ -49,4 +54,15 @@ signInContainer.addEventListener('submit', (event) => {
         .then(indexCustomersAfterSignIn)
         
         .catch(console.error)
+})
+
+indexCustomerContainer.addEventListener('click', (event) => {
+    const id = event.target.getAttribute('data-id')
+    if (!id) return
+    showCustomer(id)
+        .then((res) => res.json())
+        .then((res) => {
+            onShowCustomerSuccess(res.customer)
+        })
+        .catch(onFailure)
 })

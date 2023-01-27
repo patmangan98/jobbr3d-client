@@ -5,6 +5,8 @@ const messageContainer = document.querySelector('#message-container')
 const indexCustomers = document.querySelector('#index-customer-container')
 const signUpContainer = document.querySelector('#signUp')
 const signInContainer = document.querySelector('#signIn')
+const showCustomerContainer = document.querySelector('#show-customer-container')
+
 
 //global on failure
 export const onFailure = (error) => {
@@ -28,7 +30,6 @@ export const onSignInSuccess = (userToken) => {
     messageContainer.innerHTML = '<p>sign in successful</p>'
     signInContainer.classList.add('hide')
     signUpContainer.classList.add('hide')
-    
     store.userToken = userToken
 }
 
@@ -41,15 +42,11 @@ export const indexCustomersAfterSignIn = (customers) => {
         div.classList.add('container')
         div.innerHTML = `
         <h4>${customer.firstName} ${customer.lastName}</h4>
-        <p> ${customer.contact}</p>
-        <p>${customer.prints}</p>
-        <button id="show-customer">Show Customer</button>
+        <button data-id=${customer._id}">Show Customer</button>
         `
         indexCustomers.appendChild(div)
     })
 }
-
-
 
 export const onShowCustomerSuccess = () => {
     const div = document.createElement('div')
@@ -57,10 +54,14 @@ export const onShowCustomerSuccess = () => {
     div.innerHTML = `
     <p>${customer.firstName} ${customer.lastName}</p>
     <p>${customer.contact}</p>
-    <p>${customer.prints}</p>
-    <p> 
+    <p>${customer.descripton}</p>
+
+
     `
+    showCustomerContainer.appendChild(div)
 }
+
+
 //on create customer success
 
 //on update customer success
