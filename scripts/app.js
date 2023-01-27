@@ -61,8 +61,6 @@ indexCustomerContainer.addEventListener('click', (event) => {
     if (!id) return
     showCustomer(id)
         .then((res) => res.json())
-        .then((res) => {
-            onShowCustomerSuccess(res.customer)
-        })
+        .then((res) => onShowCustomerSuccess(res.customer))
         .catch(onFailure)
 })

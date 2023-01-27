@@ -36,7 +36,7 @@ export const onSignInSuccess = (userToken) => {
 
 //customer actions
 
-export const indexCustomersAfterSignIn = (customers) => {
+export const indexCustomersAfterSignIn = (customers, ) => {
     customers.customers.forEach((customer) => {
         const div = document.createElement('div')
         div.classList.add('container')
@@ -48,7 +48,7 @@ export const indexCustomersAfterSignIn = (customers) => {
     })
 }
 
-export const onShowCustomerSuccess = () => {
+export const onShowCustomerSuccess = (customer) => {
     const div = document.createElement('div')
     div.classList.add('containter')
     div.innerHTML = `

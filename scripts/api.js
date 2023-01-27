@@ -49,29 +49,29 @@ export const showCustomer = (id) => {
 }
 
 //update 
-export const updateCustomer = (data, id) => {
-	return fetch(`http://localhost:3000/customers/${id}`, {
-		method: 'PATCH',
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${store.userToken}`,
-		},
-		body: JSON.stringify(data),
-	})
-}
+// export const updateCustomer = (data, id) => {
+// 	return fetch(`http://localhost:3000/customers/${id}`, {
+// 		method: 'PATCH',
+// 		headers: {
+// 			'Accept': 'application/json',
+// 			'Content-Type': 'application/json',
+// 			'Authorization': `Bearer ${store.userToken}`,
+// 		},
+// 		body: JSON.stringify(data),
+// 	})
+// }
 
 
 
 //delete
-export const deleteCustomer = (id) => {
-	return fetch(`http://localhost:3000/customers/${id}`, {
-		method: 'DELETE',
-		headers: {
-			Authorization: `Bearer ${store.userToken}`,
-		},
-	})
-}
+// export const deleteCustomer = (id) => {
+// 	return fetch(`http://localhost:3000/customers/${id}`, {
+// 		method: 'DELETE',
+// 		headers: {
+// 			Authorization: `Bearer ${store.userToken}`,
+// 		},
+// 	})
+// }
 
 
 //print actions 
