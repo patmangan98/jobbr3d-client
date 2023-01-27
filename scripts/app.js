@@ -76,12 +76,13 @@ indexCustomerContainer.addEventListener('click', (event) => {
 showCustomerContainer.addEventListener('submit', (event) => {
     event.preventDefault()
     const id = event.target.getAttribute('data-id')
+    console.log(id)
     const customerData = {
         customer: {
             firstName: event.target['firstName'].value,
 			lastName: event.target['lastName'].value,
-			strength: event.target['contact'].value,
-			class: event.target['description'].value,
+			contact: event.target['contact'].value,
+			description: event.target['description'].value,
         },
     }
     updateCustomer(customerData, id)
@@ -93,8 +94,9 @@ addCustomerButton.addEventListener('click', (event) => {
     onAddCustomerClick()
 })
 
-addCustomerform.addEventListener('click', (event) => {
+addCustomerform.addEventListener('submit', (event) => {
     event.preventDefault()
+    console.log(event.target)
     const customerData = {
         customer: {
             firstName: event.target['firstName'].value,

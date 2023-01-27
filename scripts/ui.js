@@ -31,6 +31,7 @@ export const onSignInSuccess = (userToken) => {
     signInContainer.classList.add('hide')
     signUpContainer.classList.add('hide')
     addCustomerButton.classList.remove('hide')
+    addCustomerButton.classList.add("btn", "btn-primary")
     store.userToken = userToken
 }
 
@@ -52,23 +53,35 @@ export const indexCustomersAfterSignIn = (customers) => {
 export const onShowCustomerSuccess = (customer) => {
     
     const div = document.createElement('div')
-    div.classList.add('containter')
+    div.classList.add('container')
+    div.setAttribute('id', 'updateCustomer')
     div.innerHTML = `
-    <p>${customer.firstName} ${customer.lastName}</p>
-    <p>${customer.contact}</p>
-    <p>${customer.descripton}</p>
+            <p>${customer.firstName} ${customer.lastName}</p>
+            <p>${customer.contact}</p>
+            <p>${customer.descripton}</p>
+            <button data-id="${customer._id}">Delete Customer</button>
+            <form data-id="${customer._id}">
+                <input type="text" name="firstName" value="${customer.firstName}">
+                <input type="text" name="lastName" value="${customer.lastName}">
+                <input type="text" name="contact" value="${customer.contact}">
+                <input type="text" name="description" value="${customer.description}">
+                <input type="submit" value="Update Customer">
+            </form>
 
-    <form data-id="${customer._id}">
-    <input type="text" name="firstName" value="${customer.firstName}">
-    <input type="text" name="lastName" value="${customer.lastName}">
-    <input type="text" name="contact" value="${customer.contact}">
-    <input type="text" name="description" value="${customer.description}">
-    <input type="submit" value="Update Customer">
-    </form>
-
-    <button data-id="${customer._id}">Delete Customer</button>
+           
     `
     showCustomerContainer.appendChild(div)
+}
+
+
+export const reloadElementsAfterChange = () => {
+    while(indexCustomers.firstChild) {
+        showCustomerContainer.children[0].remove()
+    }//add
+    while(showCustomerContainer.firstChild) {
+        showCustomerContainer.children[0].remove()
+    }
+    indexCustomersAfterSignIn()
 }
 
 
@@ -84,12 +97,16 @@ export const onCreateCustomerSuccess = () => {
 //on update customer success
 export const onUpdateCustomerSuccess = () => {
     messageContainer.innerHTML = `customer updated successfully`
-    showCustomerContainer.classList.add('hide')
+    // while(showCustomerContainer.firstChild) {
+    //     showCustomerContainer.children[0].remove()
+    // }//update
+    reloadElementsAfterChange()
+    
 }
 //on delete customer success
 export const onDeleteCustomerSuccess = () => {
     messageContainer.innerHTML = `customer deleted successfully`
-    showCustomerContainer.classList.add('hide')
+    reloadElementsAfterChange()
 }
 //on index customer success
 
