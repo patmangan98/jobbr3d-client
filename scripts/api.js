@@ -49,19 +49,29 @@ export const showCustomer = (id) => {
 }
 
 //update 
-// export const updateCustomer = (data, id) => {
-// 	return fetch(`http://localhost:3000/customers/${id}`, {
-// 		method: 'PATCH',
-// 		headers: {
-// 			'Accept': 'application/json',
-// 			'Content-Type': 'application/json',
-// 			'Authorization': `Bearer ${store.userToken}`,
-// 		},
-// 		body: JSON.stringify(data),
-// 	})
-// }
+export const updateCustomer = (data, id) => {
+	return fetch(`http://localhost:3000/customers/${id}`, {
+		method: 'PATCH',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${store.userToken}`,
+		},
+		body: JSON.stringify(data),
+	})
+}
 
-
+export const createCustomer = (data) => {
+	return fetch(`http://localhost:3001/customers`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+			'Authorization': `Bearer ${store.userToken}`,
+        },
+        body: JSON.stringify(data)
+    })
+}
 
 //delete
 // export const deleteCustomer = (id) => {
@@ -75,9 +85,6 @@ export const showCustomer = (id) => {
 
 
 //print actions 
-
-
-
 
 //create
 

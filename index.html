@@ -43,13 +43,28 @@
     <!-- </div> -->
 <!-- 
 </div> -->
-<div id="message-container"></div>  
+<div class="container">
+    <div id="message-container"></div>  
 <!-- content goes here -->
-<!-- <button id="add-customer"></button> -->
-<div class="container" id="index-customer-container"></div>
-<div class="container" id="show-customer-container"></div>
-<div class="container" id="index-finished-prints"></div>
-<div class="container" id ='index-incomplete-prints'></div>
+    <button class="hide" id="add-customer">Add New Customer</button>
+    <form class= "hide" id="add-customer-form">
+        <input type="text" name="firstName" placeholder="first name" value="firstName"/>
+        <input type="text" name="lastName" placeholder="last name" value="lastName"/>
+        <input type="text" name="contact" placeholder="email" value="contact"/>
+        <input type="text" name="description" placeholder="description" value="description"/>
+        <input type="submit" value="Create New Customer"/>
+      </form>
+
+
+
+    <div class="container" id="index-customer-container"></div>
+    <div class="container" id="show-customer-container"></div>
+    <div class="container" id="index-finished-prints"></div>
+    <div class="container" id ='index-incomplete-prints'></div>
+</div>
+
+
+
 <!-- </main> -->
 <footer>
     <!-- bottom nav -->
