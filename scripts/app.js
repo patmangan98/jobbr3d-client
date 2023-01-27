@@ -25,9 +25,10 @@ signUpContainer.addEventListener('submit', (event) => {
         },
     }
     signUp(userData)
-    .then(onSignUpSuccess)
-    .catch(onFailure)
-    
+    try {
+        onSignUpSuccess()
+    } catch { onFailure() }
+   
 })
 
 signInContainer.addEventListener('submit', (event) => {
