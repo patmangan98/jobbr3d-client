@@ -20,6 +20,8 @@ import {
     onAddCustomerClick,
     onCreateCustomerSuccess,
     onDeleteCustomerSuccess,
+    reloadElementsAfterChange,
+    reloadCustomerIndexAfterChange
 } from './ui.js'
 
 const signUpContainer = document.querySelector('#signUp')
@@ -87,6 +89,11 @@ showCustomerContainer.addEventListener('submit', (event) => {
     }
     updateCustomer(customerData, id)
         .then(onUpdateCustomerSuccess)
+        .then(reloadElementsAfterChange)
+        .then(reloadCustomerIndexAfterChange)
+        .then(indexCustomers)
+        .then((res) => res.json())
+        .then(indexCustomersAfterSignIn)
         .catch(console.error)
 })
 
@@ -107,7 +114,11 @@ addCustomerform.addEventListener('submit', (event) => {
       }
     createCustomer(customerData)
         .then(onCreateCustomerSuccess)
-        .catch(onFailure)
+        // .then(reloadElementsAfterChange)
+        .then(indexCustomers)
+        .then((res) => res.json())
+        .then(indexCustomersAfterSignIn) 
+        .catch(console.error())
 })
 
 showCustomerContainer.addEventListener('click', (event) => {
@@ -116,5 +127,9 @@ showCustomerContainer.addEventListener('click', (event) => {
 
     deleteCustomer(id)
         .then(onDeleteCustomerSuccess)
+        .then(reloadElementsAfterChange)
+        .then(indexCustomers)
+        .then((res) => res.json())
+        .then(indexCustomersAfterSignIn)
         .catch(console.error)
 })

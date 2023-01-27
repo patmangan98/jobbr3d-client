@@ -2,7 +2,7 @@ import { store } from './store.js'
 
 const messageContainer = document.querySelector('#message-container')
 // const authContainer = document.querySelector('#auth-container')
-const indexCustomers = document.querySelector('#index-customer-container')
+const indexCustomersContainer = document.querySelector('#index-customer-container')
 const signUpContainer = document.querySelector('#signUp')
 const signInContainer = document.querySelector('#signIn')
 const showCustomerContainer = document.querySelector('#show-customer-container')
@@ -46,7 +46,7 @@ export const indexCustomersAfterSignIn = (customers) => {
         <h4>${customer.firstName} ${customer.lastName}</h4>
         <button data-id="${customer._id}">Show Customer</button>
         `
-        indexCustomers.appendChild(div)
+        indexCustomersContainer.appendChild(div)
     })
 }
 
@@ -75,15 +75,17 @@ export const onShowCustomerSuccess = (customer) => {
 
 
 export const reloadElementsAfterChange = () => {
-    while(indexCustomers.firstChild) {
-        showCustomerContainer.children[0].remove()
-    }//add
     while(showCustomerContainer.firstChild) {
         showCustomerContainer.children[0].remove()
     }
-    indexCustomersAfterSignIn()
+    console.log('done')
 }
 
+export const reloadCustomerIndexAfterChange = () => {
+    while(indexCustomersContainer.firstChild) {
+        indexCustomersContainer.children[0].remove() 
+    }
+}
 
 //on create customer success
 export const onAddCustomerClick = () => {
@@ -92,21 +94,23 @@ export const onAddCustomerClick = () => {
 
 export const onCreateCustomerSuccess = () => {
     addCustomerform.classList.add('hide')
+    messageContainer.innerHTML= 'customer Created Successfully'
+    while(indexCustomersContainer.firstChild) {
+        indexCustomersContainer.children[0].remove() 
+    }
 }
 
 //on update customer success
 export const onUpdateCustomerSuccess = () => {
     messageContainer.innerHTML = `customer updated successfully`
-    // while(showCustomerContainer.firstChild) {
-    //     showCustomerContainer.children[0].remove()
-    // }//update
-    reloadElementsAfterChange()
-    
 }
 //on delete customer success
-export const onDeleteCustomerSuccess = () => {
+export const onDeleteCustomerSuccess = (customers) => {
     messageContainer.innerHTML = `customer deleted successfully`
-    reloadElementsAfterChange()
+    while(indexCustomersContainer.firstChild) {
+        indexCustomersContainer.children[0].remove() 
+    }
+
 }
 //on index customer success
 
