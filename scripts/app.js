@@ -21,7 +21,8 @@ import {
     onCreateCustomerSuccess,
     onDeleteCustomerSuccess,
     reloadElementsAfterChange,
-    reloadCustomerIndexAfterChange
+    reloadCustomerIndexAfterChange,
+    indexAllPrints
 } from './ui.js'
 
 const signUpContainer = document.querySelector('#signUp')
@@ -62,7 +63,9 @@ signInContainer.addEventListener('submit', (event) => {
         .then(indexCustomers)
         .then((res) => res.json())
         .then(indexCustomersAfterSignIn)
-        
+        .then(indexCustomers)
+        .then((res) => res.json())
+        .then(indexAllPrints)
         .catch(console.error)
 })
 

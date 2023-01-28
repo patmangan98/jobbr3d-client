@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,30 +13,36 @@
 <body>
 <header>
 <!-- nav bar -->
- 
+<div ></div>
+<nav class="navbar navbar-dark bg-dark">
+    <h4 class ="d-flex  ps-5 pt-2 pb-2 justify-content-start text-white">Jobbr3D</h4>
+</nav>
+
+
+
 </header>    
 <!-- <main> -->
 <!-- Sign/in Sign Up here  -->
 <div class ="container" id="auth-container">
     <!-- <div class="container" > -->
-        <div class="col" id="signUp">
+        <div class="pt-3 mb-3 col" id="signUp">
             <h3>New user? Sign Up</h3>
             <form>
                 <label for="set-user-email">Add your email!</label>
 
-                <input type="email" class="form-control" id="set-user-email" placeholder="name@dabomb.com" name="email" autocomplete="off">
+                <input type="email" class="pt-3 mb-1 form-control" id="set-user-email" placeholder="name@dabomb.com" name="email" autocomplete="off">
 
-                <input type="password" class="form-control" id="set-user-password" placeholder="yourPassword123" name="password" autocomplete="off">
+                <input type="password" class="pt-3 mb-2 form-control" id="set-user-password" placeholder="yourPassword123" name="password" autocomplete="off">
 
                 <input type="submit" class="btn btn-primary">
             </form>
         </div>
-        <div class="col" id="signIn">
+        <div class="pt-3 col" id="signIn">
             <h3>Existing User? Sign In!</h3>
             <form>
-                <label for="set-user-email">Once you have an account, sign in!</label>
-                <input type="email" class="form-control" id="input-user-email" placeholder="name@dabomb.com" name="email" autocomplete="off">
-                <input type="password" class="form-control" id="input-user-password" placeholder="yourPassword123" name="password" autocomplete="off">
+                <label class="pb-2" for="set-user-email">Once you have an account, sign in!</label>
+                <input type="email" class="pt-3 mb-1 form-control" id="input-user-email" placeholder="name@dabomb.com" name="email" autocomplete="off">
+                <input type="password" class="pt-3 mb-2 form-control" id="input-user-password" placeholder="yourPassword123" name="password" autocomplete="off">
                 <input type="submit" class="btn btn-primary">
             </form>
         </div>
@@ -58,8 +64,16 @@
 
 
     <div class="container" id="index-customer-container"></div>
+    
+
     <div class="container" id="show-customer-container"></div>
+    
+    <div class ="container" id="prints-container"></div>
+
     <div class="container" id="index-finished-prints"></div>
+
+
+
     <div class="container" id ='index-incomplete-prints'></div>
 </div>
 

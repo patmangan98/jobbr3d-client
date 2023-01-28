@@ -1,13 +1,14 @@
 import { store } from './store.js'
 
 const messageContainer = document.querySelector('#message-container')
-// const authContainer = document.querySelector('#auth-container')
 const indexCustomersContainer = document.querySelector('#index-customer-container')
 const signUpContainer = document.querySelector('#signUp')
 const signInContainer = document.querySelector('#signIn')
 const showCustomerContainer = document.querySelector('#show-customer-container')
 const addCustomerButton = document.querySelector('#add-customer')
 const addCustomerform = document.querySelector('#add-customer-form')
+const unfinishedPrintsCont = document.querySelector('#index-incomplete-prints')
+const finishedPrintsCont = document.querySelector('#index-finished-prints')
 //global on failure
 export const onFailure = (error) => {
     messageContainer.innerHTML = `
@@ -38,8 +39,8 @@ export const onSignInSuccess = (userToken) => {
 
 //customer actions
 
-export const indexCustomersAfterSignIn = (customers) => {
-    customers.customers.forEach((customer) => {
+export const indexCustomersAfterSignIn = (userCustomers) => {
+    userCustomers.customers.forEach((customer) => {
         const div = document.createElement('div')
         div.classList.add('container')
         div.innerHTML = `
@@ -119,6 +120,31 @@ export const onDeleteCustomerSuccess = (customers) => {
 //print actions
 
 //on create print success
+export const onCreatePrintSuccess = () => {
+    console.log('this works')
+}
+
+export const indexAllPrints = (userCustomers) => {
+    userCustomers.customers.forEach((customer) => {
+        let printsArr = customer.prints
+        printsArr.forEach((print) => {
+            const div = document.createElement('div')
+            div.classList.add('container')
+            div.innerHTML = `
+                <h6>${customer.firstName} ${customer.lastName}</h6>
+                <p>${print.weight}</p>
+                <p>${print.hoursToPrint}</p>
+                <p>Status: ${print.isDone}</p>
+            `
+            if(print.isDone === true){
+                unfinishedPrintsCont.appendChild(div)
+            } else {
+                console.log('print is not finished')
+                finishedPrintsCont.appendChild(div)
+            }
+        })
+    })
+}
 
 //on update print success
 

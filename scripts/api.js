@@ -84,9 +84,24 @@ export const deleteCustomer = (id) => {
 }
 
 
+
+
 //print actions 
 
 //create
+
+export const createPrint = (data) => {
+	return fetch(`http://localhost:3000/prints`, {
+		method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+			'Authorization': `Bearer ${store.userToken}`,
+        },
+        body: JSON.stringify(data)
+    })
+}
+
 
 //index incomplete
 
