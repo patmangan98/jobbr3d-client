@@ -82,11 +82,7 @@ export const deleteCustomer = (id) => {
 	})
 }
 
-
-
-
 //print actions 
-
 //create
 
 export const createPrint = (data) => {
@@ -101,7 +97,14 @@ export const createPrint = (data) => {
     })
 }
 
-
+export const deletePrint = (id) => {
+	return fetch(`http://localhost:3000/prints/${id}`, {
+		method: 'delete',
+		headers: {
+			Authorization: `Bearer ${store.userToken}`
+		}
+	})
+}
 //index incomplete
 
 //index index complete

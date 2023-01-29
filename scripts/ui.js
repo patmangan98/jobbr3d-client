@@ -38,7 +38,8 @@ export const onSignInSuccess = (userToken) => {
     addCustomerButton.classList.remove('hide')
     addCustomerButton.classList.add('btn', 'btn-primary')
     addPrintButton.classList.add('hide')
-    addPrintButton.classList.add('btn', 'btn-primary')
+    unfinishedPrintsCont.classList.add('hide')
+    finishedPrintsCont.classList.add('hide')
     store.userToken = userToken
 }
 
@@ -47,7 +48,17 @@ export const onAllPrintsNavClick = () => {
    console.log('click')
    indexCustomersContainer.classList.add('hide')
    addCustomerButton.classList.add('hide')
+   addPrintButton.classList.remove('hide')
+   addPrintButton.classList.add('btn', 'btn-primary')
+   unfinishedPrintsCont.classList.remove('hide')
+   finishedPrintsCont.classList.remove('hide')
+   
 }
+//on customer click
+//on complete print click
+//on incomplete print click
+
+
 
 export const indexCustomersAfterSignIn = (userCustomers) => {
     userCustomers.customers.forEach((customer) => {
@@ -100,12 +111,13 @@ export const indexAllPrints = (userCustomers) => {
                 <p>Estimated Weight: ${print.weight} grams</p>
                 <p>Estimated Print Time: ${print.hoursToPrint} hours</p>
                 <p>Status: ${print.isDone}</p>
+                <button data-id="${print._id}">Delete Print</button>
             `
             if(print.isDone === true){
-                unfinishedPrintsCont.appendChild(div)
+                finishedPrintsCont.appendChild(div)
             } else {
                 console.log('print is not finished')
-                finishedPrintsCont.appendChild(div)
+                unfinishedPrintsCont.appendChild(div)
             }
         })
     })
@@ -124,6 +136,11 @@ export const updateCustomerIndexAfterChange = () => {
     }
 }
 
+export const updateUnfinishedPrintsCont = () => {
+    
+}
+
+
 export const onAddCustomerClick = () => {
     addCustomerform.classList.remove('hide')
 }
@@ -133,12 +150,14 @@ export const onCreateCustomerSuccess = () => {
     messageContainer.innerHTML= 'customer Created Successfully'
 }
 
+
+
 //on update customer success
 export const onUpdateCustomerSuccess = () => {
     messageContainer.innerHTML = `customer updated successfully`
 }
 //on delete customer success
-export const onDeleteCustomerSuccess = (customers) => {
+export const onDeleteCustomerSuccess = () => {
     messageContainer.innerHTML = `customer deleted successfully`
 }
 
@@ -151,3 +170,6 @@ export const onCreatePrintSuccess = () => {
     createPrintContainer.classList.add('hide')
 }
 
+export const onDeletePrintSuccess = () => {
+    messageContainer.innerHTML = 'print deleted successfully'
+}

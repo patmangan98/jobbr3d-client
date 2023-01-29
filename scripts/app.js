@@ -7,7 +7,8 @@ import {
     updateCustomer,
     createCustomer,
     deleteCustomer,
-    createPrint
+    createPrint,
+    deletePrint,
 } from './api.js'
 
 import {
@@ -25,6 +26,8 @@ import {
     indexAllPrints,
     onCreatePrintSuccess,
     onAddPrintClick,
+    onAllPrintsNavClick,
+    onDeletePrintSuccess,
 } from './ui.js'
 
 const signUpContainer = document.querySelector('#signUp')
@@ -36,6 +39,8 @@ const addCustomerform = document.querySelector('#add-customer-form')
 const addPrintForm = document.querySelector('#create-print-form')
 const addPrintButton = document.querySelector('#addPrint')
 const allPrintsNav = document.querySelector('#all-prints')
+const unfinishedPrintsCont = document.querySelector('#index-incomplete-prints')
+// const finishedPrintsCont = document.querySelector('#index-finished-prints')
 // const selectDropdown = document.querySelectorAll('#select-dropdown')
 
 signUpContainer.addEventListener('submit', (event) => {
@@ -69,12 +74,13 @@ signInContainer.addEventListener('submit', (event) => {
         .then(indexCustomers)
         .then((res) => res.json())
         .then(indexCustomersAfterSignIn)
-        // .then(indexCustomers)
-        // .then((res) => res.json())
-        // .then(indexAllPrints)
+        .then(indexCustomers)
+        .then((res) => res.json())
+        .then(indexAllPrints)
         .catch(console.error)
 })
 
+//show more customer information
 indexCustomerContainer.addEventListener('click', (event) => {
     const id = event.target.getAttribute('data-id')
     if (!id) return
@@ -84,6 +90,7 @@ indexCustomerContainer.addEventListener('click', (event) => {
         .catch(onFailure)
 })
 
+//update customer display
 showCustomerContainer.addEventListener('submit', (event) => {
     event.preventDefault()
     const id = event.target.getAttribute('data-id')
@@ -150,7 +157,8 @@ addPrintButton.addEventListener('click', (event) => {
 })
 
 allPrintsNav.addEventListener('click', (event) => {
-    
+    onAllPrintsNavClick()
+
 })
 
 addPrintForm.addEventListener('submit', (event) => {
@@ -175,3 +183,11 @@ addPrintForm.addEventListener('submit', (event) => {
         .catch(console.error)
 })
 
+unfinishedPrintsCont.addEventListener('click', (event) => {
+    const id = event.target.getAttribute('data-id')
+    console.log(id)
+    if (!id) return
+    deletePrint(id)
+    .then(onDeletePrintSuccess)
+    .catch(console.error)
+})
