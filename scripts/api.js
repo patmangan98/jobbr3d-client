@@ -1,7 +1,6 @@
 // import the token
 import { store }  from "./store.js"
 
-
 //User Actions
 
 //Sign Up
