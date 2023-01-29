@@ -9,6 +9,7 @@ import {
     deleteCustomer,
     createPrint,
     deletePrint,
+    updatePrint,
 } from './api.js'
 
 import {
@@ -28,6 +29,7 @@ import {
     onAddPrintClick,
     onAllPrintsNavClick,
     onDeletePrintSuccess,
+    updateUnfinishedPrintsCont,
 } from './ui.js'
 
 const signUpContainer = document.querySelector('#signUp')
@@ -183,11 +185,46 @@ addPrintForm.addEventListener('submit', (event) => {
         .catch(console.error)
 })
 
-unfinishedPrintsCont.addEventListener('click', (event) => {
-    const id = event.target.getAttribute('data-id')
-    console.log(id)
-    if (!id) return
-    deletePrint(id)
-    .then(onDeletePrintSuccess)
-    .catch(console.error)
+unfinishedPrintsCont.addEventListener('submit', (event) => {
+    event.preventDefault()
+    if(event.target.classList.contains("update-print")) {
+        const printIds = event.target.getAttribute('id')
+        const customerId= event.target.getAttribute('data-id')
+        const printData = {
+            print : {
+                weight: event.target['weight'].value,
+                hoursToPrint: event.target['hoursToPrint'].value,
+                description: event.target['description'].value,
+                isDone: event.target['isDone'].value,
+                customerId: customerId
+            },
+        }
+        console.log(printData)
+        console.log(printIds)
+        console.log(customerId)
+        updatePrint(printData, printIds)
+        //add function to message user
+            .then(updateUnfinishedPrintsCont())
+            .then(indexCustomers)
+            .then((res) => res.json)
+            .then(indexAllPrints)
+            .catch(console.error)
+    }
 })
+
+unfinishedPrintsCont.addEventListener('click', (event) => {
+    if (event.target.classList.contains("delete")){
+        const printId = event.target.getAttribute('data-id')
+        const customerId = event.target.getAttribute('class')
+        if (!printId) return
+        deletePrint(printId, customerId)
+            .then(onDeletePrintSuccess())
+            .then(updateUnfinishedPrintsCont())
+            .then(indexCustomers)
+            .then((res) => res.json)
+            .then(indexAllPrints)
+            .catch(console.error)
+    }
+ 
+})
+

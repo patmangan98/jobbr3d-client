@@ -54,9 +54,7 @@ export const onAllPrintsNavClick = () => {
    finishedPrintsCont.classList.remove('hide')
    
 }
-//on customer click
-//on complete print click
-//on incomplete print click
+
 
 
 
@@ -111,7 +109,15 @@ export const indexAllPrints = (userCustomers) => {
                 <p>Estimated Weight: ${print.weight} grams</p>
                 <p>Estimated Print Time: ${print.hoursToPrint} hours</p>
                 <p>Status: ${print.isDone}</p>
-                <button data-id="${print._id}">Delete Print</button>
+                <button class="btn btn-danger delete" ${customer._id}" data-id="${print._id}">Delete Print</button>
+
+                <form class="update-print" data-id=${customer._id} id="${print._id}">
+                    <input type="text" name="weight" placeholder="weight of print" value="weight"/>
+                    <input type="text" name="hoursToPrint" placeholder="hours to print" value="hoursToPrint"/>
+                    <input type="text" name="description" placeholder="description" value="description"/>
+                    <input type="text" name="isDone" placeholder="type true or false" value="false"/>
+                    <input class="btn btn-primary update-print" ${customer._id} type="submit"/>
+                </form>
             `
             if(print.isDone === true){
                 finishedPrintsCont.appendChild(div)
@@ -137,7 +143,9 @@ export const updateCustomerIndexAfterChange = () => {
 }
 
 export const updateUnfinishedPrintsCont = () => {
-    
+    while(unfinishedPrintsCont.firstChild) {
+        unfinishedPrintsCont.children[0].remove() 
+    }
 }
 
 
@@ -169,7 +177,7 @@ export const onCreatePrintSuccess = () => {
     messageContainer.innerHTML = 'print created successfully'
     createPrintContainer.classList.add('hide')
 }
-
+//on delete print success//
 export const onDeletePrintSuccess = () => {
-    messageContainer.innerHTML = 'print deleted successfully'
+    messageContainer.innerHTML = '<p>print deleted successfully</p>'
 }

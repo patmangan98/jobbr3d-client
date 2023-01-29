@@ -97,18 +97,25 @@ export const createPrint = (data) => {
     })
 }
 
-export const deletePrint = (id) => {
-	return fetch(`http://localhost:3000/prints/${id}`, {
+export const deletePrint = (printId, customerId) => {
+	return fetch(`http://localhost:3000/prints/${printId}/${customerId}`, {
 		method: 'delete',
 		headers: {
 			Authorization: `Bearer ${store.userToken}`
 		}
 	})
 }
-//index incomplete
 
-//index index complete
-
+export const updatePrint = (data, printId) => {
+	return fetch(`http://localhost:3000/prints/${printId}`, {
+		method: 'PATCH',
+		headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+			'Authorization': `Bearer ${store.userToken}`,
+        },
+		body: JSON.stringify(data)
+	})
+}
 //update
 
-//delete
