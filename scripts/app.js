@@ -35,6 +35,7 @@ const addCustomerButton = document.querySelector('#add-customer')
 const addCustomerform = document.querySelector('#add-customer-form')
 const addPrintForm = document.querySelector('#create-print-form')
 const addPrintButton = document.querySelector('#addPrint')
+const allPrintsNav = document.querySelector('#all-prints')
 // const selectDropdown = document.querySelectorAll('#select-dropdown')
 
 signUpContainer.addEventListener('submit', (event) => {
@@ -146,6 +147,10 @@ showCustomerContainer.addEventListener('click', (event) => {
 
 addPrintButton.addEventListener('click', (event) => {
     onAddPrintClick()
+})
+
+allPrintsNav.addEventListener('click', (event) => {
+    
 })
 
 addPrintForm.addEventListener('submit', (event) => {
