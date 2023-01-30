@@ -4,3 +4,22 @@
 .hideNav {
     display: none;
 }
+nav {
+    /* font-family: 'DM Mono', monospace; */
+    /* font-family: 'Space Grotesk', sans-serif; */
+    font-family: 'Barlow Condensed', sans-serif;
+}
+.title{
+    font-weight: 400;
+}
+
+button {
+    /* font-family: 'DM Sans', sans-serif; */
+    /* font-family: 'Montserrat', sans-serif; */
+    font-family: 'Barlow Condensed', sans-serif;
+}
+
+body{
+    /* font-family: 'DM Sans', sans-serif; */
+    font-family: 'Montserrat', sans-serif;
+}

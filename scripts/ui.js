@@ -1,5 +1,5 @@
 import { store } from './store.js'
-import { indexCustomers } from './api.js'
+
 const messageContainer = document.querySelector('#message-container')
 
 //auth constants
@@ -27,13 +27,13 @@ export const onFailure = (error) => {
 }
 //on signup success
 export const onSignUpSuccess = () => {
-    messageContainer.innerHTML = '<p>success, now sign in<p>'
+    messageContainer.innerHTML = '<h5>You just signed up! now Sign In</h5>'
     signUpContainer.style.display = 'none'
     console.log('worked')
 }
 
 export const onSignInSuccess = (userToken) => {
-    messageContainer.innerHTML = '<p>sign in successful</p>'
+    messageContainer.innerHTML = '<h5 class="mt-3 mb-3">Successful Sign-In!</h5>'
     signInContainer.classList.add('hide')
     signUpContainer.classList.add('hide')
     addCustomerButton.classList.remove('hide')
@@ -58,11 +58,14 @@ export const onAllPrintsNavClick = () => {
 
 export const indexCustomersAfterSignIn = (userCustomers) => {
     userCustomers.customers.forEach((customer) => {
+        
+        console.log(customer.prints.isDone)
         const div = document.createElement('div')
-        div.classList.add('container', `${customer.firstname}`)
+        div.classList.add('container', `${customer.firstname}`, 'pt-3', 'px-3', 'py-2', 'rounded-2', 'border',)
         div.innerHTML = `
-            <h4>${customer.firstName} ${customer.lastName}</h4>
-            <button data-id="${customer._id}">Show Customer</button>
+            <h4 class="mt-3 mb-3">${customer.firstName} ${customer.lastName}</h4>
+            <h6 class="mt-3 mb-3">Prints available: ${customer.prints.length}</h6>
+            <button class="btn btn-primary" data-id="${customer._id}">Show Customer</button>
         `
         const option = document.createElement('option')
         option.setAttribute('value', `${customer._id}`)
@@ -74,21 +77,20 @@ export const indexCustomersAfterSignIn = (userCustomers) => {
 }
 
 export const onShowCustomerSuccess = (customer) => {
-    
     const div = document.createElement('div')
     div.classList.add('container')
     div.setAttribute('id', 'updateCustomer')
     div.innerHTML = `
             <p>${customer.firstName} ${customer.lastName}</p>
             <p>${customer.contact}</p>
-            <p>${customer.descripton}</p>
-            <button data-id="${customer._id}">Delete Customer</button>
+            <p>${customer.description}</p>
+            <button class="btn btn-danger mb-2"data-id="${customer._id}">Delete Customer</button>
             <form data-id="${customer._id}">
-                <input type="text" name="firstName" value="${customer.firstName}">
-                <input type="text" name="lastName" value="${customer.lastName}">
-                <input type="text" name="contact" value="${customer.contact}">
-                <input type="text" name="description" value="${customer.description}">
-                <input type="submit" value="Update Customer">
+                <input class="form-control my-2" type="text" name="firstName" value="${customer.firstName}">
+                <input class="form-control my-2" type="text" name="lastName" value="${customer.lastName}">
+                <input class="form-control my-2" type="text" name="contact" value="${customer.contact}">
+                <input class="form-control my-2" type="text" name="description" value="${customer.description}">
+                <input class="btn btn-primary mt-2" type="submit" value="Update Customer">
             </form>
 
            
@@ -144,8 +146,6 @@ export const updateUnfinishedPrintsCont = (container) => {
         while(container.lastElementChild){
             container.removeChild(container.lastElementChild)
     }
-// indexCustomers()
-//     .then(indexAllPrints)
 }
 
 export const onAddCustomerClick = () => {

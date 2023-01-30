@@ -238,6 +238,48 @@ unfinishedPrintsCont.addEventListener('click', (event) => {
  
 })
 
+// finishedPrintsCont.addEventListener('submit', (event) => {
+//     event.preventDefault()
+//     if(event.target.classList.contains("update-print")) {
+//         const printIds = event.target.getAttribute('id')
+//         const customerId= event.target.getAttribute('data-id')
+//         const printData = {
+//             print : {
+//                 weight: event.target['weight'].value,
+//                 hoursToPrint: event.target['hoursToPrint'].value,
+//                 description: event.target['description'].value,
+//                 isDone: event.target['isDone'].value,
+//                 customerId: customerId
+//             },
+//         }
+//         console.log(printData)
+//         console.log(printIds)
+//         console.log(customerId)
+//         updatePrint(printData, printIds)
+//             .then(onUpdatePrintSuccess)
+//             .then(updateUnfinishedPrintsCont)
+//             .then(indexCustomers)
+//             .then((res) => res.json())
+//             .then(indexAllPrints)
+//             .catch(console.error)
+//     }
+// })
+
+// finishedPrintsCont.addEventListener('click', (event) => {
+//     if (event.target.classList.contains("removePrint")){
+//         const printIds = event.target.getAttribute('data-id')
+//         const customerIds = event.target.getAttribute('id')
+//         if (!printIds) return
+//         deletePrint(printIds, customerIds)
+//             .then((onDeletePrintSuccess()))
+//             .then((updateUnfinishedPrintsCont()))
+//             .then(indexCustomers)
+//             .then((res) => res.json)
+//             .then(indexAllPrints)
+//             .catch(console.error)
+//     }
+// })
+
 finishedPrintsCont.addEventListener('submit', (event) => {
     event.preventDefault()
     if(event.target.classList.contains("update-print")) {
@@ -252,16 +294,13 @@ finishedPrintsCont.addEventListener('submit', (event) => {
                 customerId: customerId
             },
         }
-        console.log(printData)
-        console.log(printIds)
-        console.log(customerId)
         updatePrint(printData, printIds)
-            .then(onUpdatePrintSuccess)
-            .then(updateUnfinishedPrintsCont)
-            .then(indexCustomers)
-            .then((res) => res.json())
-            .then(indexAllPrints)
-            .catch(console.error)
+        .then(onUpdatePrintSuccess)
+        .then(updateUnfinishedPrintsCont(finishedPrintsCont))
+        .then(indexCustomers)
+        .then((res) => res.json())
+        .then(indexAllPrints)
+        .catch(console.error)
     }
 })
 
@@ -271,13 +310,16 @@ finishedPrintsCont.addEventListener('click', (event) => {
         const customerIds = event.target.getAttribute('id')
         if (!printIds) return
         deletePrint(printIds, customerIds)
-            .then((onDeletePrintSuccess()))
-            .then((updateUnfinishedPrintsCont()))
-            .then(indexCustomers)
-            .then((res) => res.json)
-            .then(indexAllPrints)
-            .catch(console.error)
+        onDeletePrintSuccess()
     }
+    // onDeletePrintSuccess()
+    updateUnfinishedPrintsCont(finishedPrintsCont)
+    indexCustomers()
+    .then((res) => res.json())  
+    .then(indexAllPrints)
+
+    .catch(console.error)
+ 
 })
 
 customerTab.addEventListener('click', (event) => {
