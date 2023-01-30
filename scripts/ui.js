@@ -109,7 +109,7 @@ export const indexAllPrints = (userCustomers) => {
                 <p>Estimated Weight: ${print.weight} grams</p>
                 <p>Estimated Print Time: ${print.hoursToPrint} hours</p>
                 <p>Status: ${print.isDone}</p>
-                <button class="btn btn-danger delete" ${customer._id}" data-id="${print._id}">Delete Print</button>
+                <button class="btn btn-danger removePrint" id="${customer._id}" data-id="${print._id}">Delete Print</button>
 
                 <form class="update-print" data-id=${customer._id} id="${print._id}">
                     <input type="text" name="weight" placeholder="weight of print" value="weight"/>
@@ -122,9 +122,8 @@ export const indexAllPrints = (userCustomers) => {
             if(print.isDone === true){
                 finishedPrintsCont.appendChild(div)
             } else {
-                console.log('print is not finished')
                 unfinishedPrintsCont.appendChild(div)
-            }
+            } 
         })
     })
 }
@@ -145,6 +144,7 @@ export const updateCustomerIndexAfterChange = () => {
 export const updateUnfinishedPrintsCont = () => {
     while(unfinishedPrintsCont.firstChild) {
         unfinishedPrintsCont.children[0].remove() 
+        console.log("clearing")
     }
 }
 
@@ -177,7 +177,36 @@ export const onCreatePrintSuccess = () => {
     messageContainer.innerHTML = 'print created successfully'
     createPrintContainer.classList.add('hide')
 }
-//on delete print success//
+//on delete print success
 export const onDeletePrintSuccess = () => {
     messageContainer.innerHTML = '<p>print deleted successfully</p>'
+    console.log("deleted")
+}
+export const onUpdatePrintSuccess = () => {
+    messageContainer.innerHTML = '<p>print updated successfully</p>'
+}
+
+export const clickCustomerTab = () => {
+    unfinishedPrintsCont.classList.add('hide')
+    finishedPrintsCont.classList.add('hide')
+    addPrintButton.classList.add('hide')
+    addCustomerButton.classList.remove('hide')
+    indexCustomersContainer.classList.remove('hide')
+    console.log('click')
+}
+
+export const clickIncompleteTab = () => {
+    finishedPrintsCont.classList.add('hide')
+    unfinishedPrintsCont.classList.remove('hide')
+    addPrintButton.classList.remove('hide')
+    addCustomerButton.classList.add('hide')
+    indexCustomersContainer.classList.add('hide')
+}
+
+export const clickCompleteTab = () => {
+    finishedPrintsCont.classList.remove('hide')
+    unfinishedPrintsCont.classList.add('hide')
+    addPrintButton.classList.remove('hide')
+    addCustomerButton.classList.add('hide')
+    indexCustomersContainer.classList.add('hide')
 }

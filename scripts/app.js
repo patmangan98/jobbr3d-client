@@ -30,6 +30,10 @@ import {
     onAllPrintsNavClick,
     onDeletePrintSuccess,
     updateUnfinishedPrintsCont,
+    onUpdatePrintSuccess,
+    clickCustomerTab,
+    clickIncompleteTab,
+    clickCompleteTab,
 } from './ui.js'
 
 const signUpContainer = document.querySelector('#signUp')
@@ -44,6 +48,9 @@ const allPrintsNav = document.querySelector('#all-prints')
 const unfinishedPrintsCont = document.querySelector('#index-incomplete-prints')
 // const finishedPrintsCont = document.querySelector('#index-finished-prints')
 // const selectDropdown = document.querySelectorAll('#select-dropdown')
+const customerTab = document.querySelector('#customers-tab')
+const incompleteTab = document.querySelector('#incomplete-prints-tab')
+const completeTab = document.querySelector('#complete-prints-tab')
 
 signUpContainer.addEventListener('submit', (event) => {
     event.preventDefault()
@@ -179,6 +186,7 @@ addPrintForm.addEventListener('submit', (event) => {
     console.log(printData)
     createPrint(printData)
         .then(onCreatePrintSuccess)
+        .then(updateUnfinishedPrintsCont())
         .then(indexCustomers)
         .then((res) => res.json())
         .then(indexAllPrints)
@@ -203,23 +211,23 @@ unfinishedPrintsCont.addEventListener('submit', (event) => {
         console.log(printIds)
         console.log(customerId)
         updatePrint(printData, printIds)
-        //add function to message user
-            .then(updateUnfinishedPrintsCont())
+            .then(onUpdatePrintSuccess)
+            .then(updateUnfinishedPrintsCont)
             .then(indexCustomers)
-            .then((res) => res.json)
+            .then((res) => res.json())
             .then(indexAllPrints)
             .catch(console.error)
     }
 })
 
 unfinishedPrintsCont.addEventListener('click', (event) => {
-    if (event.target.classList.contains("delete")){
-        const printId = event.target.getAttribute('data-id')
-        const customerId = event.target.getAttribute('class')
-        if (!printId) return
-        deletePrint(printId, customerId)
-            .then(onDeletePrintSuccess())
-            .then(updateUnfinishedPrintsCont())
+    if (event.target.classList.contains("removePrint")){
+        const printIds = event.target.getAttribute('data-id')
+        const customerIds = event.target.getAttribute('id')
+        if (!printIds) return
+        deletePrint(printIds, customerIds)
+            .then((onDeletePrintSuccess()))
+            .then((updateUnfinishedPrintsCont()))
             .then(indexCustomers)
             .then((res) => res.json)
             .then(indexAllPrints)
@@ -228,3 +236,13 @@ unfinishedPrintsCont.addEventListener('click', (event) => {
  
 })
 
+
+customerTab.addEventListener('click', (event) => {
+    clickCustomerTab()
+})
+incompleteTab.addEventListener('click', (event) => {
+    clickIncompleteTab()
+})
+completeTab.addEventListener('click', (event) => {
+    clickCompleteTab()
+})

@@ -99,10 +99,10 @@ export const createPrint = (data) => {
 
 export const deletePrint = (printId, customerId) => {
 	return fetch(`http://localhost:3000/prints/${printId}/${customerId}`, {
-		method: 'delete',
+		method: 'DELETE',
 		headers: {
 			Authorization: `Bearer ${store.userToken}`
-		}
+		},
 	})
 }
 
