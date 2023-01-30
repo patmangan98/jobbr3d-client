@@ -127,7 +127,7 @@ export const indexAllPrints = (userCustomers) => {
     })
 }
 
-//refresh functions 
+
 export const updateShowElementsAfterChange = () => {
     while(showCustomerContainer.firstChild) {
         showCustomerContainer.children[0].remove()

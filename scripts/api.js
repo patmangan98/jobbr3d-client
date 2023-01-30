@@ -1,8 +1,6 @@
 // import the token
 import { store }  from "./store.js"
 
-//User Actions
-
 //Sign Up
 export const signUp = (data) => {
     return fetch('http://localhost:3000/sign-up', {

@@ -188,7 +188,6 @@ addPrintForm.addEventListener('submit', (event) => {
             customerId : dropOptions[dropOptions.selectedIndex].value,
         },
     }
-    // console.log(printData)
     createPrint(printData)
         .then(onCreatePrintSuccess)
         .then(updateUnfinishedPrintsCont(unfinishedPrintsCont))
