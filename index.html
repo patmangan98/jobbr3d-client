@@ -59,22 +59,22 @@
     <div id="message-container"></div>  
     <button class="hide mb-3" id="add-customer">Add New Customer</button>
     <form class= "hide" id="add-customer-form">
-        <input  type="text" name="firstName" placeholder="firstName" value="firstName"/>
-        <input  type="text" name="lastName" placeholder="lastName" value="lastName"/>
-        <input  type="text" name="contact" placeholder="contact" value="contact"/>
-        <input  type="text" name="description" placeholder="description" value="description"/>
-        <button type="submit">create</button>
+        <input  type="text" class="pt-3 mb-2 form-control" name="firstName" placeholder="firstName" value="firstName"/>
+        <input  type="text" class="pt-3 mb-2 form-control" name="lastName" placeholder="lastName" value="lastName"/>
+        <input  type="text" class="pt-3 mb-2 form-control" name="contact" placeholder="contact" value="contact"/>
+        <input  type="text" class="pt-3 mb-2 form-control" name="description" placeholder="description" value="description"/>
+        <button type="submit">Add Customer</button>
     </form>
 
     <button class="hide"id="addPrint">Add A Print</button>
     <div class="hide" id="create-print-conatiner">
         <form id="create-print-form">
-            <select name="customers" id="select-dropdown">
+            <select class="btn btn-primary btn-lg dropdown-toggle mt-5 mb-2" name="customers" id="select-dropdown">
             </select>
-            <input type="text" name="weight" placeholder="weight of print" value="weight"/>
-            <input type="text" name="hoursToPrint" placeholder="hours to print" value="hoursToPrint"/>
-            <input type="text" name="description" placeholder="description" value="description"/>
-            <input type="text" name="isDone" placeholder="type true or false" value="false"/>
+            <input type="text" class="pt-3 mb-2 form-control" name="weight" placeholder="weight of print" value="weight"/>
+            <input type="text" class="pt-3 mb-2 form-control" name="hoursToPrint" placeholder="hours to print" value="hoursToPrint"/>
+            <input type="text" class="pt-3 mb-2 form-control" name="description" placeholder="description" value="description"/>
+            <input type="text" class="pt-3 mb-2 form-control" name="isDone" placeholder="type true or false" value="false"/>
             <input type="submit" class="btn btn-primary"/>
         </form>
     </div>

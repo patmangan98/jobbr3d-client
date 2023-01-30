@@ -61,7 +61,7 @@ export const indexCustomersAfterSignIn = (userCustomers) => {
         
         console.log(customer.prints.isDone)
         const div = document.createElement('div')
-        div.classList.add('container', `${customer.firstname}`, 'pt-3', 'px-3', 'py-2', 'rounded-2', 'border',)
+        div.classList.add('container-sm', `${customer.firstname}`, 'mt-3', 'pt-2','pb-4', 'px-3', 'py-2', 'rounded-2', 'border', 'shadow-sm')
         div.innerHTML = `
             <h4 class="mt-3 mb-3">${customer.firstName} ${customer.lastName}</h4>
             <h6 class="mt-3 mb-3">Prints available: ${customer.prints.length}</h6>
@@ -104,21 +104,24 @@ export const indexAllPrints = (userCustomers) => {
         let printsArr = customer.prints
         printsArr.forEach((print) => {
             const div = document.createElement('div')
-            div.classList.add('container')
+            div.classList.add('container-sm','text-center','pt-3', 'px-3', 'py-2', 'rounded-2', 'border','mt-4')
             div.innerHTML = `
-                <h6>${customer.firstName} ${customer.lastName}</h6>
-                <p>Estimated Weight: ${print.weight} grams</p>
-                <p>Estimated Print Time: ${print.hoursToPrint} hours</p>
-                <p>Status: ${print.isDone}</p>
-                <button class="btn btn-danger removePrint" id="${customer._id}" data-id="${print._id}">Delete Print</button>
-
-                <form class="update-print" data-id=${customer._id} id="${print._id}">
-                    <input type="text" name="weight" placeholder="weight of print" value="weight"/>
-                    <input type="text" name="hoursToPrint" placeholder="hours to print" value="hoursToPrint"/>
-                    <input type="text" name="description" placeholder="description" value="description"/>
-                    <input type="text" name="isDone" placeholder="type true or false" value="false"/>
+                <h6 class="mt-3">${customer.firstName} ${customer.lastName}</h6>
+                <p class="mt-3">Estimated weight of the part when completed: ${print.weight} grams</p>
+                <p class="mt-3">Estimated print time for the part: ${print.hoursToPrint} hours</p>
+                <p class="mt-3">Is the print complete: ${print.isDone}</p>
+                <p>Notes:</p>
+                <p>${print.description}</p>
+                <button class="btn btn-danger col mb-4 removePrint" id="${customer._id}" data-id="${print._id}">Delete Print</button>
+           
+                <form class="update-print col" data-id=${customer._id} id="${print._id}">
+                    <input type="text" class="pt-3 mb-2 form-control" name="weight" placeholder="weight of print" value="weight"/>
+                    <input type="text" class="pt-3 mb-2 form-control" name="hoursToPrint" placeholder="hours to print" value="hoursToPrint"/>
+                    <input type="text" class="pt-3 mb-2 form-control" name="description" placeholder="description" value="description"/>
+                    <input type="text" class="pt-3 mb-2 form-control" name="isDone" placeholder="type true or false" value="false"/>
                     <input class="btn btn-primary update-print" ${customer._id} type="submit"/>
                 </form>
+               
             `
             if(print.isDone === true){
                 finishedPrintsCont.appendChild(div)

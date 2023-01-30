@@ -23,3 +23,8 @@ body{
     /* font-family: 'DM Sans', sans-serif; */
     font-family: 'Montserrat', sans-serif;
 }
+
+.btn-primary:hover{
+    transform: scale(1.2);
+}
+

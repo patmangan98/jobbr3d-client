@@ -228,57 +228,14 @@ unfinishedPrintsCont.addEventListener('click', (event) => {
         if (!printIds) return
         deletePrint(printIds, customerIds)
     }
-    // onDeletePrintSuccess()
     updateUnfinishedPrintsCont(unfinishedPrintsCont)
     indexCustomers()
     .then((res) => res.json())  
     .then(indexAllPrints)
 
-    .catch(console.error)
+   .catch(console.error)
  
 })
-
-// finishedPrintsCont.addEventListener('submit', (event) => {
-//     event.preventDefault()
-//     if(event.target.classList.contains("update-print")) {
-//         const printIds = event.target.getAttribute('id')
-//         const customerId= event.target.getAttribute('data-id')
-//         const printData = {
-//             print : {
-//                 weight: event.target['weight'].value,
-//                 hoursToPrint: event.target['hoursToPrint'].value,
-//                 description: event.target['description'].value,
-//                 isDone: event.target['isDone'].value,
-//                 customerId: customerId
-//             },
-//         }
-//         console.log(printData)
-//         console.log(printIds)
-//         console.log(customerId)
-//         updatePrint(printData, printIds)
-//             .then(onUpdatePrintSuccess)
-//             .then(updateUnfinishedPrintsCont)
-//             .then(indexCustomers)
-//             .then((res) => res.json())
-//             .then(indexAllPrints)
-//             .catch(console.error)
-//     }
-// })
-
-// finishedPrintsCont.addEventListener('click', (event) => {
-//     if (event.target.classList.contains("removePrint")){
-//         const printIds = event.target.getAttribute('data-id')
-//         const customerIds = event.target.getAttribute('id')
-//         if (!printIds) return
-//         deletePrint(printIds, customerIds)
-//             .then((onDeletePrintSuccess()))
-//             .then((updateUnfinishedPrintsCont()))
-//             .then(indexCustomers)
-//             .then((res) => res.json)
-//             .then(indexAllPrints)
-//             .catch(console.error)
-//     }
-// })
 
 finishedPrintsCont.addEventListener('submit', (event) => {
     event.preventDefault()
@@ -312,7 +269,6 @@ finishedPrintsCont.addEventListener('click', (event) => {
         deletePrint(printIds, customerIds)
         onDeletePrintSuccess()
     }
-    // onDeletePrintSuccess()
     updateUnfinishedPrintsCont(finishedPrintsCont)
     indexCustomers()
     .then((res) => res.json())  
@@ -324,6 +280,11 @@ finishedPrintsCont.addEventListener('click', (event) => {
 
 customerTab.addEventListener('click', (event) => {
     clickCustomerTab()
+    updateUnfinishedPrintsCont(indexCustomerContainer)
+    indexCustomers()
+    .then((res) =>res.json())
+    .then(indexCustomersAfterSignIn)
+    .catch(console.error)
 })
 incompleteTab.addEventListener('click', (event) => {
     clickIncompleteTab()
