@@ -1,5 +1,5 @@
 import { store } from './store.js'
-
+import { indexCustomers } from './api.js'
 const messageContainer = document.querySelector('#message-container')
 
 //auth constants
@@ -141,9 +141,11 @@ export const updateCustomerIndexAfterChange = () => {
 }
 
 export const updateUnfinishedPrintsCont = (container) => {
-    while(container.lastElementChild){
-        container.removeChild(container.lastElementChild)
-}
+        while(container.lastElementChild){
+            container.removeChild(container.lastElementChild)
+    }
+// indexCustomers()
+//     .then(indexAllPrints)
 }
 
 export const onAddCustomerClick = () => {

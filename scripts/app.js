@@ -231,8 +231,9 @@ unfinishedPrintsCont.addEventListener('click', (event) => {
     // onDeletePrintSuccess()
     updateUnfinishedPrintsCont(unfinishedPrintsCont)
     indexCustomers()
-    .then(console.log)  
+    .then((res) => res.json())  
     .then(indexAllPrints)
+
     .catch(console.error)
  
 })
