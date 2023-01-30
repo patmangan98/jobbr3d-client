@@ -31,6 +31,7 @@ export const signIn = (data) => {
 // index
 export const indexCustomers = () => {
 	return fetch(`http://localhost:3000/customers`, {
+		method: 'GET',
 		headers: {
 			Authorization: `Bearer ${store.userToken}`,
 		},

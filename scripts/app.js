@@ -46,11 +46,16 @@ const addPrintForm = document.querySelector('#create-print-form')
 const addPrintButton = document.querySelector('#addPrint')
 const allPrintsNav = document.querySelector('#all-prints')
 const unfinishedPrintsCont = document.querySelector('#index-incomplete-prints')
-// const finishedPrintsCont = document.querySelector('#index-finished-prints')
+const finishedPrintsCont = document.querySelector('#index-finished-prints')
 // const selectDropdown = document.querySelectorAll('#select-dropdown')
 const customerTab = document.querySelector('#customers-tab')
 const incompleteTab = document.querySelector('#incomplete-prints-tab')
 const completeTab = document.querySelector('#complete-prints-tab')
+const navItems = document.getElementById('sneaky')
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    navItems.classList.add('hide')
+})
 
 signUpContainer.addEventListener('submit', (event) => {
     event.preventDefault()
@@ -172,7 +177,7 @@ allPrintsNav.addEventListener('click', (event) => {
 
 addPrintForm.addEventListener('submit', (event) => {
     event.preventDefault()
-    console.log(event.target)
+    // console.log(event.target)
     const dropOptions = document.querySelector('#select-dropdown')
     const printData = {
         print: {
@@ -183,10 +188,10 @@ addPrintForm.addEventListener('submit', (event) => {
             customerId : dropOptions[dropOptions.selectedIndex].value,
         },
     }
-    console.log(printData)
+    // console.log(printData)
     createPrint(printData)
         .then(onCreatePrintSuccess)
-        .then(updateUnfinishedPrintsCont())
+        .then(updateUnfinishedPrintsCont(unfinishedPrintsCont))
         .then(indexCustomers)
         .then((res) => res.json())
         .then(indexAllPrints)
@@ -194,6 +199,46 @@ addPrintForm.addEventListener('submit', (event) => {
 })
 
 unfinishedPrintsCont.addEventListener('submit', (event) => {
+    event.preventDefault()
+    if(event.target.classList.contains("update-print")) {
+        const printIds = event.target.getAttribute('id')
+        const customerId= event.target.getAttribute('data-id')
+        const printData = {
+            print : {
+                weight: event.target['weight'].value,
+                hoursToPrint: event.target['hoursToPrint'].value,
+                description: event.target['description'].value,
+                isDone: event.target['isDone'].value,
+                customerId: customerId
+            },
+        }
+        updatePrint(printData, printIds)
+        .then(onUpdatePrintSuccess)
+        .then(updateUnfinishedPrintsCont(unfinishedPrintsCont))
+        .then(indexCustomers)
+        .then((res) => res.json())
+        .then(indexAllPrints)
+        .catch(console.error)
+    }
+})
+
+unfinishedPrintsCont.addEventListener('click', (event) => {
+    if (event.target.classList.contains("removePrint")){
+        const printIds = event.target.getAttribute('data-id')
+        const customerIds = event.target.getAttribute('id')
+        if (!printIds) return
+        deletePrint(printIds, customerIds)
+    }
+    // onDeletePrintSuccess()
+    updateUnfinishedPrintsCont(unfinishedPrintsCont)
+    indexCustomers()
+    .then(console.log)  
+    .then(indexAllPrints)
+    .catch(console.error)
+ 
+})
+
+finishedPrintsCont.addEventListener('submit', (event) => {
     event.preventDefault()
     if(event.target.classList.contains("update-print")) {
         const printIds = event.target.getAttribute('id')
@@ -220,7 +265,7 @@ unfinishedPrintsCont.addEventListener('submit', (event) => {
     }
 })
 
-unfinishedPrintsCont.addEventListener('click', (event) => {
+finishedPrintsCont.addEventListener('click', (event) => {
     if (event.target.classList.contains("removePrint")){
         const printIds = event.target.getAttribute('data-id')
         const customerIds = event.target.getAttribute('id')
@@ -233,9 +278,7 @@ unfinishedPrintsCont.addEventListener('click', (event) => {
             .then(indexAllPrints)
             .catch(console.error)
     }
- 
 })
-
 
 customerTab.addEventListener('click', (event) => {
     clickCustomerTab()

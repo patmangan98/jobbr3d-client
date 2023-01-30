@@ -16,6 +16,7 @@ const finishedPrintsCont = document.querySelector('#index-finished-prints')
 const selectDropdown = document.querySelector('#select-dropdown')
 const createPrintContainer = document.querySelector('#create-print-conatiner')
 const addPrintButton = document.querySelector('#addPrint')
+const navItems = document.getElementById('sneaky')
 
 //global on failure
 export const onFailure = (error) => {
@@ -40,9 +41,9 @@ export const onSignInSuccess = (userToken) => {
     addPrintButton.classList.add('hide')
     unfinishedPrintsCont.classList.add('hide')
     finishedPrintsCont.classList.add('hide')
+    navItems.classList.remove('hide')
     store.userToken = userToken
 }
-
 //customer actions
 export const onAllPrintsNavClick = () => {
    console.log('click')
@@ -54,9 +55,6 @@ export const onAllPrintsNavClick = () => {
    finishedPrintsCont.classList.remove('hide')
    
 }
-
-
-
 
 export const indexCustomersAfterSignIn = (userCustomers) => {
     userCustomers.customers.forEach((customer) => {
@@ -99,6 +97,7 @@ export const onShowCustomerSuccess = (customer) => {
 }
 
 export const indexAllPrints = (userCustomers) => {
+    // updateUnfinishedPrintsCont(unfinishedPrintsCont)
     userCustomers.customers.forEach((customer) => {
         let printsArr = customer.prints
         printsArr.forEach((print) => {
@@ -141,13 +140,11 @@ export const updateCustomerIndexAfterChange = () => {
     }
 }
 
-export const updateUnfinishedPrintsCont = () => {
-    while(unfinishedPrintsCont.firstChild) {
-        unfinishedPrintsCont.children[0].remove() 
-        console.log("clearing")
-    }
+export const updateUnfinishedPrintsCont = (container) => {
+    while(container.lastElementChild){
+        container.removeChild(container.lastElementChild)
 }
-
+}
 
 export const onAddCustomerClick = () => {
     addCustomerform.classList.remove('hide')
@@ -157,9 +154,6 @@ export const onCreateCustomerSuccess = () => {
     addCustomerform.classList.add('hide')
     messageContainer.innerHTML= 'customer Created Successfully'
 }
-
-
-
 //on update customer success
 export const onUpdateCustomerSuccess = () => {
     messageContainer.innerHTML = `customer updated successfully`
@@ -209,4 +203,8 @@ export const clickCompleteTab = () => {
     addPrintButton.classList.remove('hide')
     addCustomerButton.classList.add('hide')
     indexCustomersContainer.classList.add('hide')
+}
+
+export const navItemsAtSignInScreen = () => {
+    navItems.classList.add('hide')
 }
