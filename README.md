@@ -30,6 +30,44 @@ As a user...
     - I want a tool that reccommends a price point for my services based on past jobs, and other users, because it can be tricky to know how much to charge. 
 
 
+## Screenshots
+
+![Alt text](sign-in.png)
+
+![Alt text](home-customer-screen.png)
+
+![Alt text](all-prints-screen.png)
+
+![Alt text](incompelete%20screen.png)
+
+![Alt text](update-print-screen.png)
+
+## Technolgies Used 
+
+-HTML
+-CSS
+-JavaScript
+-Mongoose
+-MongoDb
+-Express
+-Cors
+-Passport
+-Passport JWT
+-Node
+-Nodemon
+-Bootstrap
+
+## Gettting Started 
+
+-Git clone down repositories from github
+-Run server with node
+-Open instance of the client of in a live server
+-Sign in and Sign up
+-Enjoy!
+
+https://github.com/patmangan98/jobbr3d-client
+https://github.com/patmangan98/jobbr3d-server
+
 ## Wireframe of USER Experience. 
 ![Alt text](project-2-wireframe.jpg)
 
