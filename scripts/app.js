@@ -34,6 +34,7 @@ import {
     clickCustomerTab,
     clickIncompleteTab,
     clickCompleteTab,
+    indexPrintUpdateForms,
 } from './ui.js'
 
 const signUpContainer = document.querySelector('#signUp')
@@ -52,6 +53,7 @@ const customerTab = document.querySelector('#customers-tab')
 const incompleteTab = document.querySelector('#incomplete-prints-tab')
 const completeTab = document.querySelector('#complete-prints-tab')
 const navItems = document.getElementById('sneaky')
+const updatePrintForms = document.getElementById('update-print')
 
 document.addEventListener('DOMContentLoaded', (event) => {
     navItems.classList.add('hide')
@@ -82,7 +84,6 @@ signInContainer.addEventListener('submit', (event) => {
        
     }
     signIn(userData)
-
         .then((res) => res.json())
         .then((res) => onSignInSuccess(res.token)) 
         .then(indexCustomers)
@@ -91,6 +92,9 @@ signInContainer.addEventListener('submit', (event) => {
         .then(indexCustomers)
         .then((res) => res.json())
         .then(indexAllPrints)
+        .then(indexCustomers)
+        .then((res) => res.json())
+        .then(indexPrintUpdateForms)
         .catch(console.error)
 })
 
@@ -197,29 +201,31 @@ addPrintForm.addEventListener('submit', (event) => {
         .catch(console.error)
 })
 
-unfinishedPrintsCont.addEventListener('submit', (event) => {
+
+updatePrintForms.addEventListener('submit', (event) => {
     event.preventDefault()
-    if(event.target.classList.contains("update-print")) {
-        const printIds = event.target.getAttribute('id')
-        const customerId= event.target.getAttribute('data-id')
-        const printData = {
-            print : {
-                weight: event.target['weight'].value,
-                hoursToPrint: event.target['hoursToPrint'].value,
-                description: event.target['description'].value,
-                isDone: event.target['isDone'].value,
-                customerId: customerId
-            },
-        }
-        updatePrint(printData, printIds)
+    console.log("clicked Clicked Clicked")
+    const printIds = event.target.getAttribute('id')
+    const customerId= event.target.getAttribute('data-id')
+    const printData = {
+        print : {
+            weight: event.target['weight'].value,
+            hoursToPrint: event.target['hoursToPrint'].value,
+            description: event.target['description'].value,
+            isDone: event.target['isDone'].value,
+            customerId: customerId
+        },
+    }
+    updatePrint(printData, printIds)
         .then(onUpdatePrintSuccess)
-        .then(updateUnfinishedPrintsCont(unfinishedPrintsCont))
+        .then(updateUnfinishedPrintsCont(updatePrintForms))
         .then(indexCustomers)
         .then((res) => res.json())
-        .then(indexAllPrints)
-        .catch(console.error)
-    }
+        .then(indexPrintUpdateForms)
+        .catch(console.err)
+        
 })
+
 
 unfinishedPrintsCont.addEventListener('click', (event) => {
     if (event.target.classList.contains("removePrint")){
