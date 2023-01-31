@@ -19,15 +19,14 @@ const updatePrintForms = document.getElementById('update-print')
 //global on failure
 export const onFailure = (error) => {
     messageContainer.innerHTML = `
-        <h3>You've encountered an error. Try again later</h3>
+        <h3>You've encountered an error. Please try again later</h3>
         <p>${error}</p>
     `
 }
 //on signup success
 export const onSignUpSuccess = () => {
-    messageContainer.innerHTML = '<h5>You just signed up! now Sign In</h5>'
+    messageContainer.innerHTML = '<h5>You just signed up! Now Sign In</h5>'
     signUpContainer.style.display = 'none'
-    console.log('worked')
 }
 
 export const onSignInSuccess = (userToken) => {
@@ -45,20 +44,16 @@ export const onSignInSuccess = (userToken) => {
 }
 //customer actions
 export const onAllPrintsNavClick = () => {
-   console.log('click')
    indexCustomersContainer.classList.add('hide')
    addCustomerButton.classList.add('hide')
    addPrintButton.classList.remove('hide')
    addPrintButton.classList.add('btn', 'btn-primary')
    unfinishedPrintsCont.classList.remove('hide')
    finishedPrintsCont.classList.remove('hide')
-   
 }
 
 export const indexCustomersAfterSignIn = (userCustomers) => {
     userCustomers.customers.forEach((customer) => {
-        
-        console.log(customer.prints.isDone)
         const div = document.createElement('div')
         div.classList.add('container-sm', `${customer.firstname}`, 'mt-3', 'pt-2','pb-4', 'px-3', 'py-2', 'rounded-2', 'border', 'shadow-sm')
         div.innerHTML = `
@@ -83,7 +78,7 @@ export const onShowCustomerSuccess = (customer) => {
             <p>${customer.firstName} ${customer.lastName}</p>
             <p>${customer.contact}</p>
             <p>${customer.description}</p>
-            <button class="btn btn-danger mb-2"data-id="${customer._id}">Delete Customer</button>
+            <button class="btn btn-danger mb-2" data-id="${customer._id}">Delete Customer</button>
             <form data-id="${customer._id}">
                 <input class="form-control my-2" type="text" name="firstName" value="${customer.firstName}">
                 <input class="form-control my-2" type="text" name="lastName" value="${customer.lastName}">
@@ -96,7 +91,6 @@ export const onShowCustomerSuccess = (customer) => {
 }
 
 export const indexAllPrints = (userCustomers) => {
-    // updateUnfinishedPrintsCont(unfinishedPrintsCont)
     userCustomers.customers.forEach((customer) => {
         let printsArr = customer.prints
         printsArr.forEach((print) => {
@@ -119,8 +113,6 @@ export const indexAllPrints = (userCustomers) => {
         })
     })
 }
-
-
 
 export const indexPrintUpdateForms = (userCustomers) => {
     userCustomers.customers.forEach((customer) => {
@@ -149,9 +141,6 @@ export const indexPrintUpdateForms = (userCustomers) => {
     })
 }
 
-
-
-
 export const updateShowElementsAfterChange = () => {
     while(showCustomerContainer.firstChild) {
         showCustomerContainer.children[0].remove()
@@ -176,15 +165,15 @@ export const onAddCustomerClick = () => {
 
 export const onCreateCustomerSuccess = () => {
     addCustomerform.classList.add('hide')
-    messageContainer.innerHTML= 'customer Created Successfully'
+    messageContainer.innerHTML= '<h4>Customer Created Successfully</h4>'
 }
 //on update customer success
 export const onUpdateCustomerSuccess = () => {
-    messageContainer.innerHTML = `customer updated successfully`
+    messageContainer.innerHTML = `<h4>Customer Updated!</h4>`
 }
 //on delete customer success
 export const onDeleteCustomerSuccess = () => {
-    messageContainer.innerHTML = `customer deleted successfully`
+    messageContainer.innerHTML = `<h4>Customer Deleted</h4>`
 }
 
 export const onAddPrintClick = () => {
@@ -192,16 +181,15 @@ export const onAddPrintClick = () => {
 }
 //on create print success
 export const onCreatePrintSuccess = () => {
-    messageContainer.innerHTML = 'print created successfully'
+    messageContainer.innerHTML = '<h4>New Printed Created</h4>'
     createPrintContainer.classList.add('hide')
 }
 //on delete print success
 export const onDeletePrintSuccess = () => {
-    messageContainer.innerHTML = '<p>print deleted successfully</p>'
-    console.log("deleted")
+    messageContainer.innerHTML = '<h4>Print Deleted!</h4>'
 }
 export const onUpdatePrintSuccess = () => {
-    messageContainer.innerHTML = '<p>print updated successfully</p>'
+    messageContainer.innerHTML = '<h4>Print updated successfully!</h4>'
 }
 
 export const clickCustomerTab = () => {
@@ -220,7 +208,6 @@ export const clickIncompleteTab = () => {
     addCustomerButton.classList.add('hide')
     indexCustomersContainer.classList.add('hide')
     updatePrintForms.classList.add('hide')
-    //hide forms 
 }
 
 export const clickCompleteTab = () => {
@@ -230,7 +217,6 @@ export const clickCompleteTab = () => {
     addCustomerButton.classList.add('hide')
     indexCustomersContainer.classList.add('hide')
     updatePrintForms.classList.add('hide')
-    //hide  forms
 }
 
 export const clickUpdateTab = () => {
@@ -241,8 +227,6 @@ export const clickUpdateTab = () => {
     indexCustomersContainer.classList.add('hide')
 }
 
-
 export const navItemsAtSignInScreen = () => {
     navItems.classList.add('hide')
-    //hide forms 
 }

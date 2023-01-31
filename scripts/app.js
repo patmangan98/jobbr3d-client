@@ -1,4 +1,3 @@
-// import { store } from './store' 
 import {
     signUp,
     signIn,
@@ -49,7 +48,6 @@ const addPrintButton = document.querySelector('#addPrint')
 const allPrintsNav = document.querySelector('#all-prints')
 const unfinishedPrintsCont = document.querySelector('#index-incomplete-prints')
 const finishedPrintsCont = document.querySelector('#index-finished-prints')
-// const selectDropdown = document.querySelectorAll('#select-dropdown')
 const customerTab = document.querySelector('#customers-tab')
 const incompleteTab = document.querySelector('#incomplete-prints-tab')
 const completeTab = document.querySelector('#complete-prints-tab')
@@ -97,10 +95,9 @@ signInContainer.addEventListener('submit', (event) => {
         .then(indexCustomers)
         .then((res) => res.json())
         .then(indexPrintUpdateForms)
-        .catch(console.error)
+        .catch(onFailure)
 })
 
-//show more customer information
 indexCustomerContainer.addEventListener('click', (event) => {
     const id = event.target.getAttribute('data-id')
     if (!id) return
@@ -110,11 +107,9 @@ indexCustomerContainer.addEventListener('click', (event) => {
         .catch(onFailure)
 })
 
-//update customer display
 showCustomerContainer.addEventListener('submit', (event) => {
     event.preventDefault()
     const id = event.target.getAttribute('data-id')
-    console.log(id)
     const customerData = {
         customer: {
             firstName: event.target['firstName'].value,
@@ -130,7 +125,7 @@ showCustomerContainer.addEventListener('submit', (event) => {
         .then(indexCustomers)
         .then((res) => res.json())
         .then(indexCustomersAfterSignIn)
-        .catch(console.error)
+        .catch(onFailure)
 })
 
 addCustomerButton.addEventListener('click', (event) => {
@@ -155,7 +150,7 @@ addCustomerform.addEventListener('submit', (event) => {
         .then((res) => res.json())
         .then(indexCustomersAfterSignIn)
         .then(updateShowElementsAfterChange) 
-        .catch(console.error())
+        .catch(onFailure)
 })
 
 showCustomerContainer.addEventListener('click', (event) => {
@@ -169,7 +164,7 @@ showCustomerContainer.addEventListener('click', (event) => {
         .then((res) => res.json())
         .then(indexCustomersAfterSignIn)
         .then(updateShowElementsAfterChange)
-        .catch(console.error)
+        .catch(onFailure)
 })
 
 addPrintButton.addEventListener('click', (event) => {
@@ -183,7 +178,6 @@ allPrintsNav.addEventListener('click', (event) => {
 
 addPrintForm.addEventListener('submit', (event) => {
     event.preventDefault()
-    // console.log(event.target)
     const dropOptions = document.querySelector('#select-dropdown')
     const printData = {
         print: {
@@ -200,13 +194,11 @@ addPrintForm.addEventListener('submit', (event) => {
         .then(indexCustomers)
         .then((res) => res.json())
         .then(indexAllPrints)
-        .catch(console.error)
+        .catch(onFailure)
 })
-
 
 updatePrintForms.addEventListener('submit', (event) => {
     event.preventDefault()
-    console.log("clicked Clicked Clicked")
     const printIds = event.target.getAttribute('id')
     const customerId= event.target.getAttribute('data-id')
     const printData = {
@@ -224,10 +216,9 @@ updatePrintForms.addEventListener('submit', (event) => {
         .then(indexCustomers)
         .then((res) => res.json())
         .then(indexPrintUpdateForms)
-        .catch(console.err)
+        .catch(onFailure)
         
 })
-
 
 unfinishedPrintsCont.addEventListener('click', (event) => {
     if (event.target.classList.contains("removePrint")){
@@ -238,10 +229,9 @@ unfinishedPrintsCont.addEventListener('click', (event) => {
     }
     updateUnfinishedPrintsCont(unfinishedPrintsCont)
     indexCustomers()
-    .then((res) => res.json())  
-    .then(indexAllPrints)
-
-   .catch(console.error)
+        .then((res) => res.json())  
+        .then(indexAllPrints)
+        .catch(onFailure)
  
 })
 
@@ -260,12 +250,12 @@ finishedPrintsCont.addEventListener('submit', (event) => {
             },
         }
         updatePrint(printData, printIds)
-        .then(onUpdatePrintSuccess)
-        .then(updateUnfinishedPrintsCont(finishedPrintsCont))
-        .then(indexCustomers)
-        .then((res) => res.json())
-        .then(indexAllPrints)
-        .catch(console.error)
+            .then(onUpdatePrintSuccess)
+            .then(updateUnfinishedPrintsCont(finishedPrintsCont))
+            .then(indexCustomers)
+            .then((res) => res.json())
+            .then(indexAllPrints)
+            .catch(onFailure)
     }
 })
 
@@ -279,10 +269,9 @@ finishedPrintsCont.addEventListener('click', (event) => {
     }
     updateUnfinishedPrintsCont(finishedPrintsCont)
     indexCustomers()
-    .then((res) => res.json())  
-    .then(indexAllPrints)
-
-    .catch(console.error)
+        .then((res) => res.json())  
+        .then(indexAllPrints)
+        .catch(onFailure)
  
 })
 
@@ -290,16 +279,19 @@ customerTab.addEventListener('click', (event) => {
     clickCustomerTab()
     updateUnfinishedPrintsCont(indexCustomerContainer)
     indexCustomers()
-    .then((res) =>res.json())
-    .then(indexCustomersAfterSignIn)
-    .catch(console.error)
+        .then((res) =>res.json())
+        .then(indexCustomersAfterSignIn)
+        .catch(onFailure)
 })
+
 incompleteTab.addEventListener('click', (event) => {
     clickIncompleteTab()
 })
+
 completeTab.addEventListener('click', (event) => {
     clickCompleteTab()
 })
+
 updateTab.addEventListener('click', (event) => {
     clickUpdateTab()
 })

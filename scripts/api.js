@@ -13,7 +13,6 @@ export const signUp = (data) => {
     })
 }
 
-
 //sign In
 export const signIn = (data) => {
     return fetch('http://localhost:3000/sign-in', {
@@ -70,8 +69,8 @@ export const createCustomer = (data) => {
         body: JSON.stringify(data)
     })
 }
-
 //delete
+
 export const deleteCustomer = (id) => {
 	return fetch(`http://localhost:3000/customers/${id}`, {
 		method: 'DELETE',
@@ -80,10 +79,8 @@ export const deleteCustomer = (id) => {
 		},
 	})
 }
-
 //print actions 
 //create
-
 export const createPrint = (data) => {
 	return fetch(`http://localhost:3000/prints`, {
 		method: 'POST',
@@ -96,6 +93,7 @@ export const createPrint = (data) => {
     })
 }
 
+//update
 export const deletePrint = (printId, customerId) => {
 	return fetch(`http://localhost:3000/prints/${printId}/${customerId}`, {
 		method: 'DELETE',
@@ -105,6 +103,7 @@ export const deletePrint = (printId, customerId) => {
 	})
 }
 
+//update
 export const updatePrint = (data, printId) => {
 	return fetch(`http://localhost:3000/prints/${printId}`, {
 		method: 'PATCH',
@@ -116,5 +115,5 @@ export const updatePrint = (data, printId) => {
 		body: JSON.stringify(data)
 	})
 }
-//update
+
 
