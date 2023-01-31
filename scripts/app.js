@@ -35,6 +35,7 @@ import {
     clickIncompleteTab,
     clickCompleteTab,
     indexPrintUpdateForms,
+    clickUpdateTab,
 } from './ui.js'
 
 const signUpContainer = document.querySelector('#signUp')
@@ -54,6 +55,7 @@ const incompleteTab = document.querySelector('#incomplete-prints-tab')
 const completeTab = document.querySelector('#complete-prints-tab')
 const navItems = document.getElementById('sneaky')
 const updatePrintForms = document.getElementById('update-print')
+const updateTab = document.querySelector('#update-tab')
 
 document.addEventListener('DOMContentLoaded', (event) => {
     navItems.classList.add('hide')
@@ -297,4 +299,7 @@ incompleteTab.addEventListener('click', (event) => {
 })
 completeTab.addEventListener('click', (event) => {
     clickCompleteTab()
+})
+updateTab.addEventListener('click', (event) => {
+    clickUpdateTab()
 })

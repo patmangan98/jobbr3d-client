@@ -2,13 +2,10 @@ import { store } from './store.js'
 
 const messageContainer = document.querySelector('#message-container')
 
-//auth constants
 const signUpContainer = document.querySelector('#signUp')
 const signInContainer = document.querySelector('#signIn')
-//customer constants
 const showCustomerContainer = document.querySelector('#show-customer-container')
 const indexCustomersContainer = document.querySelector('#index-customer-container')
-//
 const addCustomerButton = document.querySelector('#add-customer')
 const addCustomerform = document.querySelector('#add-customer-form')
 const unfinishedPrintsCont = document.querySelector('#index-incomplete-prints')
@@ -43,7 +40,7 @@ export const onSignInSuccess = (userToken) => {
     unfinishedPrintsCont.classList.add('hide')
     finishedPrintsCont.classList.add('hide')
     navItems.classList.remove('hide')
-    ///hide update tab
+    updatePrintForms.classList.add('hide')
     store.userToken = userToken
 }
 //customer actions
@@ -213,7 +210,7 @@ export const clickCustomerTab = () => {
     addPrintButton.classList.add('hide')
     addCustomerButton.classList.remove('hide')
     indexCustomersContainer.classList.remove('hide')
-    console.log('click')
+    updatePrintForms.classList.add('hide')
 }
 
 export const clickIncompleteTab = () => {
@@ -222,6 +219,8 @@ export const clickIncompleteTab = () => {
     addPrintButton.classList.remove('hide')
     addCustomerButton.classList.add('hide')
     indexCustomersContainer.classList.add('hide')
+    updatePrintForms.classList.add('hide')
+    //hide forms 
 }
 
 export const clickCompleteTab = () => {
@@ -230,8 +229,20 @@ export const clickCompleteTab = () => {
     addPrintButton.classList.remove('hide')
     addCustomerButton.classList.add('hide')
     indexCustomersContainer.classList.add('hide')
+    updatePrintForms.classList.add('hide')
+    //hide  forms
 }
+
+export const clickUpdateTab = () => {
+    updatePrintForms.classList.remove('hide')
+    finishedPrintsCont.classList.add('hide')
+    unfinishedPrintsCont.classList.add('hide')
+    addCustomerButton.classList.add('hide')
+    indexCustomersContainer.classList.add('hide')
+}
+
 
 export const navItemsAtSignInScreen = () => {
     navItems.classList.add('hide')
+    //hide forms 
 }
