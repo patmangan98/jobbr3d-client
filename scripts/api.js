@@ -1,9 +1,11 @@
 // import the token
 import { store }  from "./store.js"
 
+
+const BASE_URL = "https://jobbr3d-client.onrender.com"
 //Sign Up
 export const signUp = (data) => {
-    return fetch('http://localhost:3000/sign-up', {
+    return fetch(`${BASE_URL}/sign-up`, {
         method: 'POST',
         headers : {
             'Accept' : 'application/json',
