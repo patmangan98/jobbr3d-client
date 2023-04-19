@@ -1,9 +1,10 @@
 // import the token
 import { store }  from "./store.js"
 
+const BASE_URL = "https://jobbr3d-server.onrender.com"
 //Sign Up
 export const signUp = (data) => {
-    return fetch('http://localhost:3000/sign-up', {
+    return fetch(`${BASE_URL}/sign-up`, {
         method: 'POST',
         headers : {
             'Accept' : 'application/json',
@@ -15,7 +16,7 @@ export const signUp = (data) => {
 
 //sign In
 export const signIn = (data) => {
-    return fetch('http://localhost:3000/sign-in', {
+    return fetch(`${BASE_URL}/sign-in`, {
         method: 'POST',
         headers : {
             'Accept' : 'application/json',
@@ -27,7 +28,7 @@ export const signIn = (data) => {
 
 // index
 export const indexCustomers = () => {
-	return fetch(`http://localhost:3000/customers`, {
+	return fetch(`${BASE_URL}/customers`, {
 		method: 'GET',
 		headers: {
 			Authorization: `Bearer ${store.userToken}`,
@@ -38,7 +39,7 @@ export const indexCustomers = () => {
 
 //show
 export const showCustomer = (id) => {
-	return fetch(`http://localhost:3000/customers/${id}`, {
+	return fetch(`${BASE_URL}/customers/${id}`, {
 		headers: {
 			Authorization: `Bearer ${store.userToken}`,
 		},
@@ -47,7 +48,7 @@ export const showCustomer = (id) => {
 
 //update 
 export const updateCustomer = (data, id) => {
-	return fetch(`http://localhost:3000/customers/${id}`, {
+	return fetch(`${BASE_URL}/customers/${id}`, {
 		method: 'PATCH',
 		headers: {
 			'Accept': 'application/json',
@@ -59,7 +60,7 @@ export const updateCustomer = (data, id) => {
 }
 
 export const createCustomer = (data) => {
-	return fetch(`http://localhost:3000/customers`, {
+	return fetch(`${BASE_URL}/customers`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -72,7 +73,7 @@ export const createCustomer = (data) => {
 //delete
 
 export const deleteCustomer = (id) => {
-	return fetch(`http://localhost:3000/customers/${id}`, {
+	return fetch(`${BASE_URL}/customers/${id}`, {
 		method: 'DELETE',
 		headers: {
 			Authorization: `Bearer ${store.userToken}`,
@@ -82,7 +83,7 @@ export const deleteCustomer = (id) => {
 //print actions 
 //create
 export const createPrint = (data) => {
-	return fetch(`http://localhost:3000/prints`, {
+	return fetch(`${BASE_URL}/prints`, {
 		method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -95,7 +96,7 @@ export const createPrint = (data) => {
 
 //update
 export const deletePrint = (printId, customerId) => {
-	return fetch(`http://localhost:3000/prints/${printId}/${customerId}`, {
+	return fetch(`${BASE_URL}/prints/${printId}/${customerId}`, {
 		method: 'DELETE',
 		headers: {
 			Authorization: `Bearer ${store.userToken}`
@@ -105,7 +106,7 @@ export const deletePrint = (printId, customerId) => {
 
 //update
 export const updatePrint = (data, printId) => {
-	return fetch(`http://localhost:3000/prints/${printId}`, {
+	return fetch(`${BASE_URL}/prints/${printId}`, {
 		method: 'PATCH',
 		headers: {
             'Accept': 'application/json',
